@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>소리튠 메이트 모집 · 소리튠영어</title>
+<meta name="description" content="소리튠 메이트는 소리튠으로 내 영어를 함께 튜닝하는 크루예요. 매주 학습을 인증하면 기록이 쌓이고, 뱃지·명예의 전당·혜택으로 돌아와요.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="소리튠 메이트 · 내 영어를 함께 튜닝하는 크루 🎧">
+<meta property="og:description" content="같이 배우고 내 영어가 느는 크루, 소리튠 메이트. 매주 공부한 걸 남기면 뱃지·혜택으로 돌아와요. 지금 합류하세요.">
+<meta property="og:url" content="https://soritune-supporters.pages.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  :root{
+    --bg:#0a0a0e; --ink:#f4f5f7; --sub:#9b9baa; --muted:#6f6f7e;
+    --line:rgba(255,255,255,.09); --surface:rgba(255,255,255,.045); --surface2:rgba(255,255,255,.075);
+    --b1:#fe6400; --b2:#ff9436; --grad:linear-gradient(135deg,#fe6400 0%,#ff9436 100%);
+    --ok:#34d399;
+  }
+  html,body{margin:0;padding:0;background:var(--bg);}
+  body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--ink);
+       line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;position:relative;overflow-x:hidden;}
+  .bgglow{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(62% 42% at 50% -6%, rgba(254,100,0,.20), transparent 70%),
+      radial-gradient(48% 34% at 88% 6%, rgba(255,148,54,.17), transparent 70%);}
+  .app{position:relative;z-index:1;max-width:440px;margin:0 auto;padding:0 18px 118px;}
+  #openApply{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;
+    width:calc(100% - 28px);max-width:412px;margin:0;z-index:40;}
+
+  .top{display:flex;align-items:center;gap:11px;padding:24px 2px 16px;}
+  .logo{width:38px;height:38px;border-radius:12px;background:var(--grad);
+    display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 8px 22px rgba(254,100,0,.35);}
+  .top .name{font-size:16px;font-weight:800;letter-spacing:-0.5px;}
+  .top .tagline{font-size:11.5px;color:var(--sub);font-weight:500;margin-top:1px;}
+
+  /* Hero */
+  .hero{text-align:center;padding:38px 6px 6px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:800;color:#fff;
+    background:var(--grad);border:none;border-radius:999px;padding:9px 17px;letter-spacing:-0.2px;
+    box-shadow:0 10px 24px rgba(254,100,0,.42);}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 0 0 rgba(255,255,255,.6);animation:ebpulse 2s ease-out infinite;}
+  @keyframes ebpulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}70%{box-shadow:0 0 0 7px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+  @media (prefers-reduced-motion:reduce){.eyebrow .dot{animation:none;}}
+  .hero h1{font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1.28;margin:16px 0 10px;}
+  .hero h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero p{font-size:14px;color:var(--sub);margin:0;line-height:1.7;word-break:keep-all;}
+
+  /* Card */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px 20px;margin:18px 0;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 20px 54px rgba(0,0,0,.4);}
+  .card h2{font-size:17px;font-weight:800;letter-spacing:-0.4px;margin:0 0 4px;}
+  .card .desc{font-size:13px;color:var(--sub);margin:0 0 16px;line-height:1.7;word-break:keep-all;}
+  .sec-eyebrow{font-size:11.5px;font-weight:800;letter-spacing:1.5px;color:#ffc48a;margin:0 0 10px;}
+
+  /* 체크 리스트 */
+  .li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.6;margin:11px 0;word-break:keep-all;}
+  .li .ck{flex:0 0 auto;width:20px;height:20px;border-radius:7px;background:rgba(52,211,153,.15);color:var(--ok);
+    display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;margin-top:1px;}
+  .li b{color:#fff;font-weight:700;}
+  .li.warn .ck{background:rgba(251,113,133,.15);color:#fb7185;}
+
+  /* 순서 스텝 (왜 소리튠 메이트 / 루틴) */
+  .flow{display:flex;flex-direction:column;gap:0;margin-top:6px;}
+  .flowrow{display:flex;gap:13px;align-items:flex-start;position:relative;padding:0 0 18px;}
+  .flowrow:last-child{padding-bottom:0;}
+  .flowrow .n{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--grad);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;box-shadow:0 6px 16px rgba(254,100,0,.3);z-index:1;}
+  .flowrow:not(:last-child)::before{content:"";position:absolute;left:14.5px;top:30px;bottom:2px;width:2px;background:var(--line);}
+  .flowrow .ft{flex:1;padding-top:2px;}
+  .flowrow .ft b{font-size:15px;font-weight:800;color:#fff;display:block;letter-spacing:-0.3px;}
+  .flowrow .ft span{font-size:13px;color:var(--sub);line-height:1.65;word-break:keep-all;}
+  .flowrow .ft .tag{color:#ffcfa3;font-weight:700;}
+
+  /* 미션 탭 */
+  .tabs{display:flex;gap:8px;margin:0 0 16px;}
+  .tab{flex:1;padding:12px;border-radius:13px;border:1px solid var(--line);background:var(--surface2);
+    color:#c7c7d2;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;letter-spacing:-0.2px;transition:.15s;
+    display:flex;align-items:center;justify-content:center;gap:7px;}
+  .tab svg{width:18px;height:18px;flex:0 0 auto;display:block;}
+  .tab.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 10px 24px rgba(254,100,0,.28);}
+  .pane{display:none;}
+  .pane.on{display:block;animation:rise .3s ease;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .block{border:1px solid var(--line);border-radius:16px;padding:16px 16px 6px;margin:12px 0;background:rgba(255,255,255,.02);}
+  .block .h{font-size:13px;font-weight:800;color:#fff;margin:0 0 8px;}
+  .example-link{display:block;margin:12px 0 8px;text-align:center;text-decoration:none;
+    background:rgba(254,100,0,.12);border:1px solid rgba(254,100,0,.3);border-radius:11px;
+    padding:11px;font-size:13.5px;font-weight:800;color:#ffc48a;letter-spacing:-0.2px;}
+  .example-link:active{transform:translateY(1px);}
+  .ex{margin-top:12px;border-top:1px dashed var(--line);padding-top:12px;font-size:13px;color:var(--sub);line-height:1.7;}
+  .ex b{color:#ffcfa3;}
+
+  /* 콘텐츠 코인 리워드 */
+  .coingrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 4px;}
+  .coin-group{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px 12px 6px;margin:10px 0;background:rgba(255,255,255,.02);}
+  .coin-gh{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:800;margin:2px 2px 10px;}
+  .coin-gh svg{width:19px;height:19px;}
+  .coin-gh.naver{color:#4fd08a;} .coin-gh.insta{color:#f48fb1;}
+  .coincard{background:rgba(254,100,0,.07);border:1px solid rgba(254,100,0,.22);border-radius:14px;padding:15px 14px;text-align:center;}
+  .coincard .cc-ch{font-size:12.5px;font-weight:700;color:#e9c6a6;margin-bottom:6px;}
+  .coincard .cc-n{font-size:24px;font-weight:900;letter-spacing:-1px;font-variant-numeric:tabular-nums;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .coincard .cc-n small{font-size:12px;font-weight:800;-webkit-text-fill-color:#ffc48a;margin-left:2px;}
+
+  /* 뱃지(레벨) */
+  .badges{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 2px;}
+  .badge{border:1px solid var(--line);border-radius:15px;padding:14px 12px;text-align:center;background:rgba(255,255,255,.02);}
+  .badge .bi{font-size:26px;line-height:1;}
+  .badge .bn{font-size:13.5px;font-weight:800;margin-top:7px;letter-spacing:-0.3px;}
+  .badge .bd{font-size:11.5px;color:var(--sub);margin-top:3px;line-height:1.5;}
+  .badge.top{border-color:rgba(254,100,0,.4);background:rgba(254,100,0,.08);grid-column:1 / -1;
+    display:flex;align-items:center;gap:14px;text-align:left;}
+  .badge.top .bi{font-size:30px;flex:0 0 auto;}
+  .badge.top .bn{color:#ffc48a;margin-top:0;}
+  .badge.top .bd{margin-top:3px;}
+
+  /* 명예의 전당 (포디움) */
+  .hall{display:flex;align-items:flex-end;justify-content:center;gap:9px;margin:6px 0 2px;}
+  .podium{flex:1;text-align:center;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px 14px 10px 10px;padding:12px 6px 10px;}
+  .podium .medal{font-size:24px;line-height:1;}
+  .podium .plabel{font-size:11px;color:var(--sub);font-weight:700;margin-top:6px;line-height:1.4;}
+  .podium.p1{border-color:rgba(254,100,0,.45);background:rgba(254,100,0,.10);padding-top:20px;}
+  .podium.p1 .plabel{color:#ffc48a;font-weight:800;}
+  .hall-note{margin-top:14px;font-size:13px;color:var(--sub);line-height:1.7;word-break:keep-all;text-align:center;}
+  .hall-note b{color:#ffcfa3;}
+  .hall-feature{text-align:center;border:1px solid rgba(254,100,0,.42);border-radius:16px;padding:22px 16px 18px;
+    background:radial-gradient(120% 90% at 50% 0%, rgba(254,100,0,.16), rgba(254,100,0,.05));}
+  .hf-crown{font-size:42px;line-height:1;filter:drop-shadow(0 6px 14px rgba(254,100,0,.4));}
+  .hf-title{font-size:18px;font-weight:900;color:#ffc48a;margin-top:8px;letter-spacing:-0.4px;}
+  .hf-sub{font-size:12.5px;color:var(--sub);margin-top:7px;line-height:1.6;word-break:keep-all;}
+  .hf-sub b{color:#ffd9b3;font-weight:700;}
+
+  /* 이번 주 베스트 메이트 */
+  .best{display:flex;gap:13px;align-items:center;border:1px solid rgba(254,100,0,.3);background:rgba(254,100,0,.07);
+    border-radius:16px;padding:15px 16px;margin-top:14px;}
+  .best .bem{font-size:34px;line-height:1;flex:0 0 auto;}
+  .best .bt b{font-size:14.5px;font-weight:800;color:#fff;display:block;letter-spacing:-0.3px;}
+  .best .bt span{font-size:12.5px;color:var(--sub);line-height:1.6;word-break:keep-all;}
+
+  /* 공동 결정 (투표 프리뷰) */
+  .vote{border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.02);overflow:hidden;margin:6px 0 2px;}
+  .voteitem{display:flex;align-items:center;gap:11px;padding:14px 15px;border-bottom:1px solid var(--line);}
+  .voteitem:last-child{border-bottom:none;}
+  .voteitem .vic{font-size:19px;flex:0 0 auto;}
+  .voteitem .vtx{flex:1;font-size:14px;font-weight:700;color:#f4f5f7;letter-spacing:-0.2px;}
+  .voteitem .vtx small{display:block;font-size:11.5px;color:var(--sub);font-weight:500;margin-top:2px;}
+  .voteitem .vbtn{flex:0 0 auto;font-size:12px;font-weight:800;color:#ffc48a;background:rgba(254,100,0,.12);
+    border:1px solid rgba(254,100,0,.25);border-radius:999px;padding:6px 12px;}
+
+  /* 고지 */
+  .notice{font-size:13px;color:var(--sub);line-height:1.7;background:rgba(255,255,255,.03);
+    border:1px dashed var(--line);border-radius:14px;padding:15px 16px;word-break:keep-all;}
+  .notice b{color:#fff;}
+
+  /* CTA */
+  .cta{display:block;margin:22px 0 6px;text-decoration:none;border-radius:16px;padding:17px;text-align:center;
+    background:var(--grad);color:#fff;box-shadow:0 14px 34px rgba(254,100,0,.40);position:relative;overflow:hidden;
+    font-size:16px;font-weight:800;letter-spacing:-0.3px;}
+  .cta .s{display:block;font-size:11.5px;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:3px;}
+  .cta::after{content:"";position:absolute;top:0;left:-60%;width:38%;height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);
+    transform:skewX(-20deg);animation:sheen 3.4s ease-in-out infinite;}
+  @keyframes sheen{0%{left:-60%}40%{left:140%}100%{left:140%}}
+  @media (prefers-reduced-motion:reduce){.cta::after{animation:none;display:none;}}
+  .foot{padding:24px 8px 8px;text-align:center;font-size:11.5px;color:var(--muted);line-height:1.7;}
+
+  /* ===== 합류 서베이 (토스 스타일 단계형) ===== */
+  .survey{position:fixed;inset:0;z-index:60;background:var(--bg);display:none;flex-direction:column;max-width:440px;margin:0 auto;}
+  .survey.on{display:flex;}
+  .sv-top{display:flex;align-items:center;gap:14px;padding:16px 18px 12px;}
+  .sv-back{background:none;border:none;color:var(--ink);font-size:26px;line-height:1;cursor:pointer;padding:0;width:26px;font-family:inherit;}
+  .sv-bar{flex:1;height:5px;border-radius:99px;background:var(--surface2);overflow:hidden;}
+  .sv-bar>span{display:block;height:100%;width:0;border-radius:99px;background:var(--grad);transition:width .3s ease;}
+  .sv-body{flex:1;overflow-y:auto;padding:24px 22px 16px;}
+  .sv-q{font-size:25px;font-weight:800;letter-spacing:-0.6px;line-height:1.36;margin:6px 0 6px;}
+  .sv-sub{font-size:14px;color:var(--sub);margin:0 0 30px;}
+  .sv-field{display:flex;align-items:baseline;gap:8px;border-bottom:2px solid var(--line);padding:6px 2px;transition:border-color .2s;}
+  .sv-field.focus{border-color:var(--b1);}
+  .sv-in{flex:1;background:transparent;border:none;font-size:27px;font-weight:700;color:var(--ink);padding:6px 0;outline:none;font-family:inherit;min-width:0;}
+  .sv-in::placeholder{color:#4a4a57;}
+  .sv-suffix{font-size:20px;font-weight:700;color:var(--sub);}
+  .sv-opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;padding:17px 18px;border-radius:16px;
+    border:1.6px solid var(--line);background:var(--surface);color:var(--ink);font-size:16.5px;font-weight:700;font-family:inherit;cursor:pointer;margin-bottom:11px;transition:.15s;}
+  .sv-opt:active{transform:scale(.99);}
+  .sv-opt.sel{border-color:var(--b1);background:rgba(254,100,0,.12);}
+  .sv-opt svg{width:22px;height:22px;flex:0 0 auto;}
+  .sv-opt .ot .od{font-size:12.5px;color:var(--sub);font-weight:600;margin-top:2px;}
+  .sv-opt .rc{margin-left:auto;color:var(--b1);font-weight:900;opacity:0;transition:.15s;}
+  .sv-opt.sel .rc{opacity:1;}
+  .sv-sum{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:2px 18px;margin-top:4px;}
+  .sv-row{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;}
+  .sv-row:last-child{border-bottom:none;}
+  .sv-row .k{color:var(--sub);font-weight:600;}
+  .sv-row .v{font-weight:800;text-align:right;}
+  .sv-foot{padding:14px 18px calc(18px + env(safe-area-inset-bottom));}
+  .sv-next{width:100%;background:var(--grad);color:#fff;border:none;border-radius:15px;padding:17px;font-size:16px;font-weight:800;
+    font-family:inherit;cursor:pointer;letter-spacing:-0.3px;box-shadow:0 12px 28px rgba(254,100,0,.3);transition:.15s;}
+  .sv-next:disabled{background:var(--surface2);color:var(--muted);box-shadow:none;cursor:default;}
+  .sv-err{color:#fb7185;font-size:12.5px;text-align:center;min-height:16px;margin-top:8px;}
+  .survey.done .sv-top,.survey.done .sv-body,.survey.done .sv-foot{display:none;}
+  .sv-done{display:none;flex:1;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;}
+  .survey.done .sv-done{display:flex;}
+  .sv-done .em{font-size:62px;}
+  .sv-done h2{font-size:24px;font-weight:900;margin:16px 0 8px;letter-spacing:-0.5px;}
+  .sv-done p{font-size:14.5px;color:var(--sub);line-height:1.75;margin:0 0 26px;word-break:keep-all;}
+</style>
+</head>
+<body>
+<div class="bgglow"></div>
+<div class="app">
+
+  <!-- Hero -->
+  <section class="hero">
+    <span class="eyebrow"><span class="dot"></span>소리튠 메이트 모집 중 🔥</span>
+    <h1>같이 배우고,<br><span class="g">영어가 느는</span> 크루.</h1>
+    <p>소리튠 메이트는 소리튠으로 내 영어를 함께 키워가는 <b style="color:#fff">크루</b>예요.<br>매주 공부한 걸 남기면 기록이 차곡차곡 쌓여서,<br>나만의 학습 일지가 돼요.</p>
+  </section>
+
+  <!-- ① 얻는 관계 — 활동 = 내 학습 루틴 -->
+  <section class="card">
+    <div class="sec-eyebrow">💡 왜 소리튠 메이트?</div>
+    <h2>같이 배우고, 같이 크는 동료</h2>
+    <p class="desc"><b style="color:#fff">내 영어 공부가 먼저</b>예요. 공부하면서 남긴 기록이 다른 사람에게도 슬쩍 도움이 되고, 나한테는 혜택으로 돌아와요.</p>
+    <div class="flow">
+      <div class="flowrow"><div class="n">1</div><div class="ft"><b>매주 공부한 걸 남겨요</b><span>소리튜닝·소리블록으로 배운 걸 블로그·인스타에 남기면, <span class="tag">그게 바로 소리튠 메이트 활동</span>이에요.</span></div></div>
+      <div class="flowrow"><div class="n">2</div><div class="ft"><b>기록이 실력으로 남아요</b><span>후기를 쓰며 배운 걸 정리하다 보면 내 영어가 더 탄탄해져요. <span class="tag">나를 위한 성장 일지</span>가 되는 거죠.</span></div></div>
+      <div class="flowrow"><div class="n">3</div><div class="ft"><b>혜택은 자연스럽게 따라와요</b><span>쌓인 기록은 뱃지·명예의 전당·코인으로 돌아와요. 내 글이 누군가에게 닿는 건 <span class="tag">기분 좋은 보너스</span>고요.</span></div></div>
+    </div>
+  </section>
+
+  <!-- ④ 단계별 누적 혜택 (위로 갈수록 쌓임) -->
+  <section class="card">
+    <div class="sec-eyebrow">🎁 단계가 오를수록 쌓이는 혜택</div>
+    <h2>메이트 단계별 누적 혜택</h2>
+    <p class="desc">위로 올라갈수록 <b style="color:#fff">아래 단계 혜택은 그대로 유지</b>되고,<br>새로운 혜택이 하나씩 더해져요.</p>
+
+    <div style="display:flex;flex-direction:column;gap:10px;margin:6px 0 2px;">
+
+      <!-- 🌱 배움 -->
+      <div style="border:1px solid var(--line);border-radius:14px;padding:14px 15px;background:rgba(255,255,255,.02);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:22px;line-height:1;">🌱</span>
+          <span style="font-weight:800;font-size:15px;color:#fff;">배움 메이트</span>
+          <span style="font-size:11.5px;color:var(--sub);margin-left:auto;">Learn · 합류 즉시</span>
+        </div>
+        <div style="margin-top:9px;">
+          <div style="font-weight:800;color:#ffc48a;font-size:14px;">🪙 코인 적립</div>
+          <div style="font-size:12.5px;color:var(--sub);margin-top:2px;">학습 인증마다 코인이 쌓여 강의·상품 결제에 현금처럼 써요</div>
+        </div>
+      </div>
+
+      <!-- 🍃 성장 -->
+      <div style="border:1px solid var(--line);border-radius:14px;padding:14px 15px;background:rgba(255,255,255,.02);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:22px;line-height:1;">🍃</span>
+          <span style="font-weight:800;font-size:15px;color:#fff;">성장 메이트</span>
+          <span style="font-size:11.5px;color:var(--sub);margin-left:auto;">Grow · 인증 10회</span>
+        </div>
+        <div style="font-size:11.5px;color:var(--sub);margin:8px 0 6px;">＋ 배움 단계 혜택 유지</div>
+        <div>
+          <div style="font-weight:800;color:#ffc48a;font-size:14px;">🎁 성장 키트 증정</div>
+          <div style="font-size:12.5px;color:var(--sub);margin-top:2px;">여행영어 VOD + 구동사 자료집을 성장 키트로 드려요</div>
+        </div>
+      </div>
+
+      <!-- 🌳 나눔 -->
+      <div style="border:1px solid var(--line);border-radius:14px;padding:14px 15px;background:rgba(255,255,255,.02);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:22px;line-height:1;">🌳</span>
+          <span style="font-weight:800;font-size:15px;color:#fff;">나눔 메이트</span>
+          <span style="font-size:11.5px;color:var(--sub);margin-left:auto;">Share · 인증 30회</span>
+        </div>
+        <div style="font-size:11.5px;color:var(--sub);margin:8px 0 6px;">＋ 배움 + 성장 단계 혜택 유지</div>
+        <div>
+          <div style="font-weight:800;color:#ffc48a;font-size:14px;">🔥 챌린지 무료 참여</div>
+          <div style="font-size:12.5px;color:var(--sub);margin-top:2px;">진행되는 챌린지에 메이트로 무료 초대돼요</div>
+        </div>
+      </div>
+
+      <!-- ☀️ 마스터 -->
+      <div style="border:1px solid rgba(254,100,0,.45);border-radius:14px;padding:14px 15px;background:rgba(254,100,0,.08);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:22px;line-height:1;">☀️</span>
+          <span style="font-weight:800;font-size:15px;color:#ffc48a;">마스터 메이트</span>
+          <span style="font-size:11.5px;color:var(--sub);margin-left:auto;">Master · 인증 50회</span>
+        </div>
+        <div style="font-size:11.5px;color:var(--sub);margin:8px 0 6px;">＋ 배움 + 성장 + 나눔 단계 혜택 유지</div>
+        <div>
+          <div style="font-weight:800;color:#ffc48a;font-size:14px;">🗳️ 학습 콘텐츠 기획 참여</div>
+          <div style="font-size:12.5px;color:var(--sub);margin-top:2px;">다음 챌린지 주제·학습 콘텐츠를 직접 기획·제안할 수 있어요</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="li" style="margin-top:14px;"><span class="ck">✓</span><span>합류하면 <b>소리튠 메이트 크루방</b>에서 단계별 혜택과 제안·투표에 참여할 수 있어요</span></div>
+  </section>
+
+  <!-- ③ 명예의 전당 — 이 달의 소리튠 메이트 -->
+  <section class="card">
+    <div class="sec-eyebrow">🏆 명예의 전당</div>
+    <h2>매달, 가장 빛난 메이트</h2>
+    <p class="desc">활동은 사라지지 않고 <b style="color:#fff">내 이름 아래 쌓여요.</b> 매달 가장 멋진 메이트를 뽑아 소개해요.</p>
+    <div class="hall-feature">
+      <div class="hf-crown">👑</div>
+      <div class="hf-title">이 달의 소리튠 메이트</div>
+      <div class="hf-sub">매달 <b>마스터 메이트</b>의 콘텐츠 중에서 가장 멋진 콘텐츠 하나를 뽑아요</div>
+    </div>
+    <div class="hall-note">뽑히면 <b>소리튠 공식 채널·명예의 전당</b>에 소개되고,<br><b>보너스 코인</b>까지 두둑하게 챙겨드려요. 🪙</div>
+  </section>
+
+  <!-- ② 미션 (유지) : 두 채널 = 내 학습을 기록하는 법 -->
+  <section class="card">
+    <div class="sec-eyebrow">✍️ 활동 방법</div>
+    <h2>내 학습을 기록하는 두 가지 길</h2>
+    <p class="desc">네이버 · 인스타그램 중 편한 채널로, 배운 걸 내 방식대로 남기면 돼요.<br>기록 하나마다 <b style="color:#fff">코인</b>이 함께 쌓여요.</p>
+    <div class="coin-group">
+      <div class="coin-gh naver">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#03C75A"/><path d="M8.2 7 h3.05 l2.9 4.35 V7 H17 v10 h-3.05 l-2.9-4.35 V17 H8.2 Z" fill="#fff"/></svg>
+        네이버</div>
+      <div class="coingrid">
+        <div class="coincard"><div class="cc-ch">📝 블로그</div><div class="cc-n">5,000<small>코인</small></div></div>
+        <div class="coincard"><div class="cc-ch">💬 카페</div><div class="cc-n">2,000<small>코인</small></div></div>
+      </div>
+    </div>
+    <div class="coin-group">
+      <div class="coin-gh insta">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".62" stop-color="#d62976"/><stop offset="1" stop-color="#962fbf"/></linearGradient></defs><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.6" fill="none" stroke="url(#ig2)" stroke-width="2.1"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="url(#ig2)" stroke-width="2.1"/><circle cx="17.1" cy="6.9" r="1.25" fill="url(#ig2)"/></svg>
+        인스타그램</div>
+      <div class="coingrid">
+        <div class="coincard"><div class="cc-ch">📷 게시글</div><div class="cc-n">3,000<small>코인</small></div></div>
+        <div class="coincard"><div class="cc-ch">🎬 릴스</div><div class="cc-n">5,000<small>코인</small></div></div>
+      </div>
+    </div>
+    <div class="li"><span class="ck">💸</span><span>모은 코인은 <b>소리튠영어 포인트로 전환</b> — 강의·상품 결제에 <b>현금처럼</b> 써요 (10코인 = 1포인트)</span></div>
+    <div class="ex">📌 <b>예시</b><br>블로그 2건(10,000) + 카페 4건(8,000) → <b>18,000코인</b> 🎁</div>
+    <a href="https://soritune-supporters.pages.dev/links" style="display:block;text-align:center;margin:14px 0 2px;padding:14px;border-radius:12px;background:linear-gradient(135deg,#fe6400,#ff9a3d);color:#fff;font-weight:800;font-size:15.5px;text-decoration:none;box-shadow:0 6px 18px rgba(254,100,0,.28);">🪙 내 기록·코인 확인하기 →</a>
+  </section>
+
+  <!-- 활동 채널별 작성 기준 (유지) -->
+  <section class="card">
+    <div class="sec-eyebrow">📋 작성 기준</div>
+    <h2>채널별 작성 가이드</h2>
+    <p class="desc">네이버 / 인스타그램에 따라 기준이 조금 달라요.</p>
+
+    <div class="tabs">
+      <button class="tab on" data-t="naver">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#03C75A"/><path d="M8.2 7 h3.05 l2.9 4.35 V7 H17 v10 h-3.05 l-2.9-4.35 V17 H8.2 Z" fill="#fff"/></svg>
+        네이버</button>
+      <button class="tab" data-t="insta">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".62" stop-color="#d62976"/><stop offset="1" stop-color="#962fbf"/></linearGradient></defs><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.6" fill="none" stroke="url(#ig)" stroke-width="2.1"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="url(#ig)" stroke-width="2.1"/><circle cx="17.1" cy="6.9" r="1.25" fill="url(#ig)"/></svg>
+        인스타그램</button>
+    </div>
+
+    <!-- 네이버 -->
+    <div class="pane on" id="p-naver">
+      <div class="block">
+        <div class="h">📝 블로그 작성 기준</div>
+        <div class="li"><span class="ck">·</span><span>최소 <b>1,000자 이상</b> 작성 권장</span></div>
+        <div class="li"><span class="ck">·</span><span><b>이미지 5장 이상</b> 첨부 필수</span></div>
+        <div class="li"><span class="ck">·</span><span>제목에 <b>소리튠영어·영어공부·영어발음·영어회화</b> 등 키워드 포함</span></div>
+        <div class="li"><span class="ck">·</span><span>영어 고민·학습 과정·느낀 점·추천 대상을 구체적으로</span></div>
+        <a class="example-link" href="https://blog.naver.com/soritunenglish/224335439986" target="_blank" rel="noopener">🏆 베스트 예시 글 확인하기 →</a>
+      </div>
+      <div class="block">
+        <div class="h">💬 카페 작성 기준</div>
+        <div class="li"><span class="ck">·</span><span><b>이미지 1장 이상</b> 첨부 필수</span></div>
+        <div class="li"><span class="ck">·</span><span>학습이 진행되는 과정을 담아 작성</span></div>
+        <div class="li"><span class="ck">·</span><span>광고성 문구보다 자연스러운 후기·정보 공유 형태</span></div>
+        <div class="li"><span class="ck">·</span><span>본인 상황·영어 고민·학습 포인트 중심</span></div>
+        <a class="example-link" href="https://cafe.naver.com/f-e/cafes/23243775/articles/248862?menuid=307&referrerAllArticles=false" target="_blank" rel="noopener">🏆 베스트 예시 글 확인하기 →</a>
+      </div>
+    </div>
+
+    <!-- 인스타 -->
+    <div class="pane" id="p-insta">
+      <div class="block">
+        <div class="h">📷 작성 기준</div>
+        <div class="li"><span class="ck">·</span><span>게시글 또는 릴스 중 선택 가능</span></div>
+        <div class="li"><span class="ck">·</span><span>게시글: <b>이미지 3장 이상</b>·카드뉴스·학습 기록 형태</span></div>
+        <div class="li"><span class="ck">·</span><span>릴스: 짧은 후기·공부 루틴·학습 포인트 중심</span></div>
+        <div class="li"><span class="ck">·</span><span>캡션엔 본인 경험·느낀 점을 자연스럽게</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <a class="cta" id="openApply" href="#apply">
+    <span class="s">내 영어도 늘고, 혜택도 챙기고</span>
+    소리튠 메이트 합류하기 →
+  </a>
+
+  <p style="text-align:center;margin:16px 0 0;"><a href="/links" style="color:var(--sub);font-size:13px;text-decoration:none;">이미 메이트인가요? <b style="color:#ffc48a;">내 기록 제출하기 →</b></a></p>
+  <p style="text-align:center;margin:10px 0 0;"><a href="/guide" style="color:var(--sub);font-size:13px;text-decoration:none;">처음이신가요? <b style="color:#ffc48a;">이용 가이드 보기 📖</b></a></p>
+
+  <div class="foot">SORITUNE · 소리튠 메이트</div>
+</div>
+
+<!-- 합류 서베이 (토스 스타일) -->
+<div class="survey" id="survey">
+  <div class="sv-top">
+    <button class="sv-back" id="svBack" aria-label="뒤로">‹</button>
+    <div class="sv-bar"><span id="svBar"></span></div>
+  </div>
+  <div class="sv-body" id="svBody"></div>
+  <div class="sv-foot">
+    <button class="sv-next" id="svNext" disabled>다음</button>
+    <div class="sv-err" id="svErr"></div>
+  </div>
+  <div class="sv-done">
+    <div class="em">🎉</div>
+    <h2>소리튠 메이트 신청 완료!</h2>
+    <p>합류 신청 감사해요 🙌<br><b>승인</b>되면 크루방에 초대되고,<br>'내 기록' 페이지에서 학습 인증을 등록하며<br>뱃지와 코인을 쌓을 수 있어요.</p>
+    <button class="sv-next" style="max-width:280px" id="svClose">닫기</button>
+  </div>
+</div>
+
+<script>
+  // ===== 채널 탭 =====
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b === btn));
+      const t = btn.dataset.t;
+      document.getElementById('p-naver').classList.toggle('on', t === 'naver');
+      document.getElementById('p-insta').classList.toggle('on', t === 'insta');
+    });
+  });
+
+  // ===== 합류 서베이 =====
+  const NAVER_SVG = '<svg viewBox="0 0 24 24"><rect width="24" height="24" rx="5" fill="#03C75A"/><path d="M8.2 7 h3.05 l2.9 4.35 V7 H17 v10 h-3.05 l-2.9-4.35 V17 H8.2 Z" fill="#fff"/></svg>';
+  const INSTA_SVG = '<svg viewBox="0 0 24 24"><defs><linearGradient id="ig2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".62" stop-color="#d62976"/><stop offset="1" stop-color="#962fbf"/></linearGradient></defs><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.6" fill="none" stroke="url(#ig2)" stroke-width="2.1"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="url(#ig2)" stroke-width="2.1"/><circle cx="17.1" cy="6.9" r="1.25" fill="url(#ig2)"/></svg>';
+
+  const STEPS = [
+    { key:'name',   type:'text',   q:'이름을 알려주세요', ph:'홍길동' },
+    { key:'gender', type:'choice', q:'성별을 선택해주세요', opts:[{v:'남성'},{v:'여성'},{v:'기타'}] },
+    { key:'age',    type:'number', q:'나이를 알려주세요', ph:'나이', suffix:'세' },
+    { key:'phone',  type:'tel',    q:'연락받을 번호를<br>입력해주세요', ph:'010-0000-0000' },
+    { key:'media',  type:'choice', multi:true, q:'어느 채널로<br>기록할까요?', sub:'여러 개 선택할 수 있어요', opts:[{v:'네이버',logo:NAVER_SVG},{v:'인스타그램',logo:INSTA_SVG}] },
+    { key:'product',type:'choice', multi:true, q:'어떤 수업으로<br>공부하고 싶으세요?', sub:'여러 개 선택할 수 있어요', opts:[{v:'소리튜닝',d:'발음·소리 중심 훈련'},{v:'소리블록',d:'문장·표현 블록 학습'},{v:'그 외 강의',d:'그 밖에 듣고 싶은 수업'}] },
+    { key:'confirm',type:'confirm',q:'입력 내용을<br>확인해주세요' },
+  ];
+  const LABEL = { name:'이름', gender:'성별', age:'나이', phone:'연락처', media:'활동 채널', product:'원하는 수업' };
+  const ans = {}; let cur = 0;
+  const $ = id => document.getElementById(id);
+  const survey = $('survey'), body = $('svBody'), nextBtn = $('svNext'), bar = $('svBar');
+
+  $('openApply').addEventListener('click', e => { e.preventDefault(); open(); });
+  $('svBack').addEventListener('click', back);
+  $('svClose').addEventListener('click', close);
+  nextBtn.addEventListener('click', next);
+
+  function open(){ cur = 0; survey.classList.remove('done'); survey.classList.add('on'); document.body.style.overflow='hidden'; render(); }
+  function close(){ survey.classList.remove('on','done'); document.body.style.overflow=''; }
+  function back(){ if(cur===0){ close(); } else { cur--; render(); } }
+
+  function valid(){
+    const s = STEPS[cur], v = ans[s.key];
+    if(s.type==='confirm') return true;
+    if(s.key==='name') return v && v.trim().length>=1;
+    if(s.key==='age'){ const n=parseInt(v,10); return Number.isFinite(n)&&n>=1&&n<=120; }
+    if(s.key==='phone'){ return (v||'').replace(/\D/g,'').length>=10; }
+    if(s.multi) return Array.isArray(v) && v.length>0;
+    return !!v;
+  }
+  function updateNext(){ nextBtn.disabled = !valid(); }
+
+  function render(){
+    const s = STEPS[cur];
+    bar.style.width = (cur/(STEPS.length-1)*100) + '%';
+    $('svErr').textContent = '';
+    nextBtn.textContent = (s.type==='confirm') ? '합류 신청하기' : '다음';
+    let h = '<div class="sv-q">'+s.q+'</div>';
+    if(s.sub) h += '<div class="sv-sub">'+s.sub+'</div>';
+
+    if(s.type==='choice'){
+      const sel = s.multi ? (Array.isArray(ans[s.key])?ans[s.key]:[]) : ans[s.key];
+      const isSel = v => s.multi ? sel.includes(v) : sel===v;
+      h += s.opts.map(o =>
+        '<button class="sv-opt'+(isSel(o.v)?' sel':'')+'" data-v="'+o.v+'">'+
+        (o.logo?o.logo:'')+
+        '<span class="ot">'+o.v+(o.d?'<span class="od">'+o.d+'</span>':'')+'</span>'+
+        '<span class="rc">✓</span></button>').join('');
+      body.innerHTML = h;
+      body.querySelectorAll('.sv-opt').forEach(b => b.addEventListener('click', () => {
+        if(s.multi){
+          const arr = Array.isArray(ans[s.key])?ans[s.key]:[];
+          const i = arr.indexOf(b.dataset.v);
+          if(i>=0) arr.splice(i,1); else arr.push(b.dataset.v);
+          ans[s.key] = arr;
+          b.classList.toggle('sel', arr.includes(b.dataset.v));
+          updateNext();
+        } else {
+          ans[s.key] = b.dataset.v;
+          body.querySelectorAll('.sv-opt').forEach(x => x.classList.toggle('sel', x===b));
+          updateNext();
+          setTimeout(next, 260);
+        }
+      }));
+    } else if(s.type==='confirm'){
+      const fmtAns = k => { const v=ans[k]; return Array.isArray(v)? (v.join(', ')||'-') : (v||'-'); };
+      h += '<div class="sv-sum">' + Object.keys(LABEL).map(k =>
+        '<div class="sv-row"><span class="k">'+LABEL[k]+'</span><span class="v">'+fmtAns(k)+(k==='age'&&ans[k]?'세':'')+'</span></div>').join('') + '</div>';
+      body.innerHTML = h;
+    } else {
+      const inMode = s.type==='number' ? 'inputmode="numeric"' : (s.type==='tel'?'inputmode="tel"':'');
+      h += '<div class="sv-field"><input class="sv-in" id="svIn" '+inMode+' placeholder="'+s.ph+'" value="'+(ans[s.key]||'')+'">'+(s.suffix?'<span class="sv-suffix">'+s.suffix+'</span>':'')+'</div>';
+      body.innerHTML = h;
+      const inp = $('svIn'), field = body.querySelector('.sv-field');
+      inp.addEventListener('focus', ()=>field.classList.add('focus'));
+      inp.addEventListener('blur', ()=>field.classList.remove('focus'));
+      inp.addEventListener('input', () => {
+        let val = inp.value;
+        if(s.type==='number') val = val.replace(/\D/g,'').slice(0,3);
+        if(s.type==='tel'){ const d=val.replace(/\D/g,'').slice(0,11); val = d.length<4?d : d.length<8?d.slice(0,3)+'-'+d.slice(3) : d.slice(0,3)+'-'+d.slice(3,7)+'-'+d.slice(7); }
+        inp.value = val; ans[s.key] = val; updateNext();
+      });
+      inp.addEventListener('keydown', e => { if(e.key==='Enter' && valid()) next(); });
+      setTimeout(()=>inp.focus(), 120);
+    }
+    updateNext();
+  }
+
+  function next(){
+    if(!valid()) return;
+    if(STEPS[cur].type==='confirm'){ submit(); return; }
+    if(cur < STEPS.length-1){ cur++; render(); }
+  }
+
+  async function submit(){
+    nextBtn.disabled = true; nextBtn.textContent = '신청 중…';
+    try{
+      const join = v => Array.isArray(v)? v.join(',') : v;
+      const res = await fetch('/api/apply', { method:'POST', headers:{'content-type':'application/json'},
+        body: JSON.stringify({ name:ans.name, gender:ans.gender, age:parseInt(ans.age,10)||0, phone:ans.phone, media:join(ans.media), product:join(ans.product) }) });
+      const d = await res.json().catch(()=>({}));
+      if(res.ok && d.ok){ bar.style.width='100%'; survey.classList.add('done'); }
+      else { $('svErr').textContent = '신청에 실패했어요. 잠시 후 다시 시도해주세요.'; nextBtn.disabled=false; nextBtn.textContent='합류 신청하기'; }
+    }catch(e){ $('svErr').textContent = '네트워크 오류가 발생했어요.'; nextBtn.disabled=false; nextBtn.textContent='합류 신청하기'; }
+  }
+</script>
+</body>
+</html>

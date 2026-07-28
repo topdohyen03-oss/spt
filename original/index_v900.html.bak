@@ -16,7 +16,6 @@
   :root{
     --bg:#ffffff; --ink:#17171c;
     --brand:#fe6400; --brand-deep:#e55a00; --tint:#fff3ea; --tint2:#ffe7d5;
-    --surface:#f5f6f8; --surface-line:#e6e8ec;
     --maxw:1080px;
   }
   html,body{margin:0;padding:0;background:var(--bg);}
@@ -27,12 +26,12 @@
   .container{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
 
   /* ===== 버튼 ===== */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;font-weight:700;
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;font-weight:800;
     border-radius:13px;cursor:pointer;text-decoration:none;border:none;transition:.15s;letter-spacing:-0.2px;white-space:nowrap;}
   .btn-primary{background:var(--brand);color:#fff;}
   .btn-primary:hover{background:var(--brand-deep);transform:translateY(-1px);}
-  .btn-ghost{background:var(--surface);color:var(--brand-deep);}
-  .btn-ghost:hover{background:#e9eaee;}
+  .btn-ghost{background:#fff;color:var(--brand-deep);}
+  .btn-ghost:hover{background:var(--tint);}
   .btn-sm{padding:11px 20px;font-size:14px;}
   .btn-lg{padding:17px 30px;font-size:17px;}
 
@@ -41,22 +40,16 @@
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
   .brand{display:flex;align-items:center;gap:10px;}
   .brand .logo{width:34px;height:34px;border-radius:10px;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:17px;}
-  .brand .bn{font-size:16px;font-weight:700;letter-spacing:-0.2px;}
-  .brand .bt{font-size:13px;color:var(--ink);font-weight:500;}
+  .brand .bn{font-size:16px;font-weight:800;letter-spacing:-0.4px;}
+  .brand .bt{font-size:13px;color:var(--brand-deep);font-weight:500;}
 
   /* ===== 섹션 공통 ===== */
   .section{padding:88px 0;}
-  .section.alt{background:var(--surface);}
+  .section.alt{background:var(--tint);}
   .sec-head{text-align:center;max-width:680px;margin:0 auto 48px;}
-  .sec-eyebrow{font-size:17px;font-weight:700;color:var(--ink);margin:0 0 12px;}
-  .sec-head h2{font-size:36px;font-weight:700;letter-spacing:-0.5px;line-height:1.32;margin:0 0 14px;color:var(--ink);}
+  .sec-eyebrow{font-size:14px;font-weight:800;color:var(--brand);margin:0 0 12px;}
+  .sec-head h2{font-size:36px;font-weight:900;letter-spacing:-1px;line-height:1.28;margin:0 0 14px;color:var(--ink);}
   .sec-head .sec-desc{font-size:18px;font-weight:500;color:var(--ink);margin:0;line-height:1.7;word-break:keep-all;}
-  .sec-illust{width:150px;height:auto;display:block;margin:0 auto 18px;}
-  .sec-illust .sun-glow{transform-box:fill-box;transform-origin:center;opacity:.18;animation:sunglow 4.5s ease-in-out infinite;}
-  .sec-illust .sun{transform-box:fill-box;transform-origin:center;animation:sunrise 4.5s ease-in-out infinite;}
-  @keyframes sunrise{0%{transform:translateY(12px);opacity:.3}30%{transform:translateY(0);opacity:1}78%{transform:translateY(0);opacity:1}100%{transform:translateY(12px);opacity:.3}}
-  @keyframes sunglow{0%,100%{opacity:.08;transform:scale(.8)}40%{opacity:.3;transform:scale(1.12)}}
-  @media (prefers-reduced-motion:reduce){.sec-illust .sun,.sec-illust .sun-glow{animation:none;opacity:1;transform:none;}}
 
   /* ===== Hero ===== */
   .hero{background:linear-gradient(180deg,var(--tint) 0%,#fff 100%);padding:64px 0 92px;text-align:center;}
@@ -65,13 +58,13 @@
   .hero-mascot .wave{transform-box:fill-box;transform-origin:bottom right;animation:wave 2.8s ease-in-out infinite;}
   @keyframes wave{0%,58%,100%{transform:rotate(0)}68%{transform:rotate(-14deg)}82%{transform:rotate(7deg)}}
   @media (prefers-reduced-motion:reduce){.hero-mascot,.hero-mascot .wave{animation:none;}}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--brand-deep);
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:var(--brand-deep);
     background:var(--tint2);border-radius:999px;padding:9px 18px;}
   .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--brand);
     box-shadow:0 0 0 0 rgba(254,100,0,.5);animation:ebpulse 2s ease-out infinite;}
   @keyframes ebpulse{0%{box-shadow:0 0 0 0 rgba(254,100,0,.45)}70%{box-shadow:0 0 0 8px rgba(254,100,0,0)}100%{box-shadow:0 0 0 0 rgba(254,100,0,0)}}
   @media (prefers-reduced-motion:reduce){.eyebrow .dot{animation:none;}}
-  .hero h1{font-size:54px;font-weight:800;letter-spacing:-0.8px;line-height:1.22;margin:26px 0 20px;color:var(--ink);}
+  .hero h1{font-size:56px;font-weight:900;letter-spacing:-1.8px;line-height:1.16;margin:26px 0 20px;color:var(--ink);}
   .hero h1 .g{color:var(--brand);}
   .hero p{font-size:18px;font-weight:500;color:var(--ink);margin:0 auto;max-width:620px;line-height:1.7;word-break:keep-all;}
   .hero-cta{display:flex;gap:12px;justify-content:center;margin-top:34px;flex-wrap:wrap;}
@@ -82,96 +75,87 @@
   .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
 
   /* ===== 카드 ===== */
-  .card{background:var(--surface);border-radius:20px;padding:28px 26px;}
+  .card{background:var(--tint);border-radius:20px;padding:28px 26px;}
 
   /* 왜 소리튠 — 3스텝 */
   .feature{display:flex;flex-direction:column;}
   .feature .num{width:46px;height:46px;border-radius:13px;background:var(--brand);color:#fff;
-    font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
-  .feature h3{font-size:20px;font-weight:700;letter-spacing:-0.2px;margin:0 0 10px;color:var(--ink);}
+    font-size:20px;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .feature h3{font-size:20px;font-weight:800;letter-spacing:-0.4px;margin:0 0 10px;color:var(--ink);}
   .feature p{font-size:16px;font-weight:500;color:var(--ink);line-height:1.7;margin:0;word-break:keep-all;}
-  .feature p .tag{color:var(--ink);font-weight:700;}
+  .feature p .tag{color:var(--brand-deep);font-weight:700;}
 
   /* 단계별 혜택 — 4카드 */
   .level{display:flex;flex-direction:column;border-radius:18px;padding:22px 20px;background:#fff;}
   .level .em{font-size:30px;line-height:1;}
-  .level .nm{font-size:18px;font-weight:700;letter-spacing:-0.2px;color:var(--ink);}
-  .level .step{font-size:13px;font-weight:500;color:var(--ink);margin-top:3px;}
-  .level .keep{font-size:13px;font-weight:500;color:var(--ink);margin-top:auto;padding-top:14px;}
-  .level .bt{font-size:16px;font-weight:700;color:var(--ink);margin-top:16px;}
+  .level .nm{font-size:18px;font-weight:800;letter-spacing:-0.4px;color:var(--ink);margin-top:12px;}
+  .level .step{font-size:13px;font-weight:500;color:var(--brand-deep);margin-top:3px;}
+  .level .keep{font-size:13px;font-weight:500;color:var(--ink);margin:14px 0 10px;}
+  .level .divider{margin-top:14px;}
+  .level .bt{font-size:16px;font-weight:800;color:var(--brand-deep);}
   .level .bd{font-size:14px;font-weight:500;color:var(--ink);margin-top:4px;line-height:1.6;}
-  .level.master{background:var(--ink);}
+  .level.master{background:var(--brand);}
   .level.master .nm{color:#fff;}
-  .level.master .step{color:rgba(255,255,255,.7);}
-  .level.master .keep{color:rgba(255,255,255,.7);}
+  .level.master .step{color:rgba(255,255,255,.85);}
+  .level.master .keep{color:rgba(255,255,255,.85);}
   .level.master .bt{color:#fff;}
-  .level.master .bd{color:rgba(255,255,255,.9);}
-  .note-line{display:flex;gap:8px;align-items:flex-start;justify-content:center;margin-top:32px;font-size:16px;font-weight:500;color:var(--ink);word-break:keep-all;text-align:center;}
-  .note-line .ck{flex:0 0 auto;color:var(--ink);font-weight:700;margin-top:2px;}
+  .level.master .bd{color:rgba(255,255,255,.92);}
+  .note-line{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:32px;font-size:16px;font-weight:500;color:var(--ink);word-break:keep-all;text-align:center;}
+  .note-line .ck{flex:0 0 auto;color:var(--brand);font-weight:900;}
 
   /* 명예의 전당 */
   .hall-wrap{max-width:640px;margin:0 auto;}
-  .hall-feature{text-align:center;border-radius:22px;padding:44px 28px 36px;background:var(--surface);}
+  .hall-feature{text-align:center;border-radius:22px;padding:44px 28px 36px;background:var(--tint);}
   .hf-crown{font-size:56px;line-height:1;}
-  .hf-illust{width:104px;height:auto;display:block;margin:0 auto 4px;}
-  .hf-title{display:inline-block;font-size:24px;font-weight:800;color:var(--brand);margin-top:12px;letter-spacing:-0.2px;background:var(--ink);padding:9px 20px;border-radius:12px;}
+  .hf-title{font-size:24px;font-weight:800;color:var(--brand-deep);margin-top:12px;letter-spacing:-0.6px;}
   .hf-sub{font-size:16px;font-weight:500;color:var(--ink);margin-top:12px;line-height:1.65;word-break:keep-all;}
   .hall-note{margin-top:22px;font-size:16px;font-weight:500;color:var(--ink);line-height:1.7;word-break:keep-all;text-align:center;}
-  .hall-note b{color:var(--ink);}
+  .hall-note b{color:var(--brand-deep);}
 
   /* 코인 리워드 */
   .coin-group{border-radius:20px;padding:22px 22px 18px;background:#fff;}
-  .coin-gh{display:flex;align-items:center;gap:9px;font-size:18px;font-weight:700;margin:2px 2px 16px;color:var(--ink);}
+  .coin-gh{display:flex;align-items:center;gap:9px;font-size:18px;font-weight:800;margin:2px 2px 16px;color:var(--ink);}
   .coin-gh svg{width:21px;height:21px;}
   .coingrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .coincard{background:var(--surface);border-radius:16px;padding:22px 14px;text-align:center;}
+  .coincard{background:var(--tint);border-radius:16px;padding:22px 14px;text-align:center;}
   .coincard .cc-ch{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:9px;}
-  .coincard .cc-n{font-size:36px;font-weight:700;letter-spacing:-0.5px;font-variant-numeric:tabular-nums;color:var(--ink);}
+  .coincard .cc-n{font-size:32px;font-weight:900;letter-spacing:-1px;font-variant-numeric:tabular-nums;color:var(--brand);}
   .coincard .cc-n small{font-size:13px;font-weight:500;color:var(--ink);margin-left:3px;}
-  .coin-group.naver .cc-n{color:#03C75A;}
-  .coin-group.insta .cc-n{background:linear-gradient(45deg,#feda75 0%,#fa7e1e 25%,#d62976 55%,#962fbf 80%,#4f5bd5 100%);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .coin-extra .li{justify-content:center;text-align:center;}
-  .ex .ex-total{font-size:26px;font-weight:700;letter-spacing:-0.5px;vertical-align:-2px;}
-  .ex .ex-total small{font-size:14px;font-weight:700;margin-left:2px;}
   .coin-extra{max-width:720px;margin:32px auto 0;}
   .li{display:flex;gap:11px;align-items:flex-start;font-size:16px;font-weight:500;line-height:1.6;margin:14px 0;word-break:keep-all;color:var(--ink);}
-  .li .ck{flex:0 0 auto;color:var(--ink);font-weight:700;margin-top:1px;}
-  .ex{margin-top:16px;background:#fff;border-radius:14px;padding:16px 18px;font-size:16px;font-weight:500;color:var(--ink);line-height:1.7;word-break:keep-all;text-align:center;}
-  .ex b{color:var(--ink);}
+  .li .ck{flex:0 0 auto;color:var(--brand);font-weight:900;margin-top:1px;}
+  .ex{margin-top:16px;background:#fff;border-radius:14px;padding:16px 18px;font-size:14px;font-weight:500;color:var(--ink);line-height:1.7;word-break:keep-all;text-align:center;}
+  .ex b{color:var(--brand-deep);}
   .coin-cta{text-align:center;margin-top:26px;}
-  .coin-cta .btn-primary{background:var(--ink);}
-  .coin-cta .btn-primary:hover{background:#000;}
 
   /* 작성 가이드 탭 */
   .tabs{display:flex;gap:10px;margin:0 auto 24px;max-width:440px;}
-  .tab{flex:1;padding:14px;border-radius:13px;border:none;background:var(--surface);
-    color:var(--ink);font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;transition:.15s;
+  .tab{flex:1;padding:14px;border-radius:13px;border:none;background:var(--tint);
+    color:var(--ink);font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;transition:.15s;
     display:flex;align-items:center;justify-content:center;gap:7px;}
   .tab svg{width:18px;height:18px;flex:0 0 auto;display:block;}
-  .tab.on{background:var(--ink);color:#fff;}
+  .tab.on{background:var(--brand);color:#fff;}
   .pane{display:none;max-width:900px;margin:0 auto;}
   .pane.on{display:block;animation:rise .3s ease;}
   @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  .block{border-radius:18px;padding:28px 26px 22px;background:var(--surface);height:100%;display:flex;flex-direction:column;}
-  .block .h{font-size:18px;font-weight:700;color:var(--ink);margin:0 0 14px;}
-  .example-link{display:block;margin:18px 0 0;margin-top:auto;text-align:center;text-decoration:none;
-    background:var(--ink);border-radius:12px;padding:13px;font-size:14px;font-weight:700;color:#fff;}
-  .example-link:hover{background:#000;}
+  .block{border-radius:18px;padding:24px 24px 16px;background:var(--tint);height:100%;}
+  .block .h{font-size:18px;font-weight:800;color:var(--ink);margin:0 0 14px;}
+  .example-link{display:block;margin:16px 0 4px;text-align:center;text-decoration:none;
+    background:#fff;border-radius:12px;padding:13px;font-size:14px;font-weight:800;color:var(--brand-deep);}
+  .example-link:hover{background:var(--tint2);}
 
   /* ===== 마무리 CTA 밴드 ===== */
-  .cta-band{background:var(--ink);text-align:center;padding:80px 0;position:relative;overflow:hidden;}
-  .cta-band::before{content:"";position:absolute;inset:0;background:url("assets/team-hands.jpg") center/cover no-repeat;opacity:.15;pointer-events:none;}
-  .cta-band .container{position:relative;z-index:1;}
-  .cta-band h2{font-size:36px;font-weight:700;color:#fff;letter-spacing:-0.5px;margin:0 0 10px;line-height:1.32;}
+  .cta-band{background:var(--brand);text-align:center;padding:80px 0;}
+  .cta-band h2{font-size:36px;font-weight:900;color:#fff;letter-spacing:-1px;margin:0 0 10px;line-height:1.3;}
   .cta-band p{font-size:18px;font-weight:500;color:#fff;margin:0 0 30px;word-break:keep-all;}
-  .cta-band .btn-primary{background:var(--brand);color:#fff;}
-  .cta-band .btn-primary:hover{background:var(--brand-deep);}
+  .cta-band .btn-primary{background:#fff;color:var(--brand-deep);}
+  .cta-band .btn-primary:hover{background:var(--tint);}
   .cta-band .sublinks{margin-top:22px;}
   .cta-band .sublinks a{color:#fff;font-size:14px;font-weight:500;text-decoration:none;margin:0 14px;}
-  .cta-band .sublinks a b{font-weight:700;text-decoration:underline;text-underline-offset:3px;}
+  .cta-band .sublinks a b{font-weight:800;text-decoration:underline;text-underline-offset:3px;}
 
-  .foot{padding:15px 0;text-align:center;font-size:12px;font-weight:500;color:rgba(255,255,255,.5);line-height:1.5;background:var(--ink);border-top:1px solid rgba(255,255,255,.1);}
-  .foot b{font-weight:700;color:rgba(255,255,255,.7);}
+  .foot{padding:36px 0;text-align:center;font-size:13px;font-weight:500;color:#fff;line-height:1.7;background:var(--ink);}
+  .foot b{font-weight:800;}
 
   /* ===== 반응형 (모바일) ===== */
   @media (max-width:860px){
@@ -180,19 +164,15 @@
     .brand .bt{display:none;}
     .section{padding:56px 0;}
     .sec-head{margin-bottom:34px;}
-    .sec-illust{width:118px;margin-bottom:12px;}
-    .sec-head h2{font-size:26px;letter-spacing:-0.4px;}
+    .sec-head h2{font-size:26px;letter-spacing:-0.6px;}
     .sec-head .sec-desc{font-size:16px;}
-    .hero{padding:28px 0 40px;}
-    .hero-mascot{width:168px;margin-bottom:2px;}
-    .hero h1{font-size:32px;letter-spacing:-0.5px;margin:12px 0 12px;}
+    .hero{padding:56px 0 60px;}
+    .hero h1{font-size:36px;letter-spacing:-1.2px;}
     .hero p{font-size:16px;}
     .hero-cta{flex-direction:column;}
     .hero-cta .btn{width:100%;}
     .grid-3,.grid-4,.grid-2{grid-template-columns:1fr;gap:14px;}
     .card{padding:22px 20px;}
-    .level .nm{font-size:20px;}
-    .note-line{font-size:18px;}
     .cta-band{padding:56px 0;}
     .cta-band h2{font-size:26px;}
     .cta-band .sublinks a{display:inline-block;margin:6px 10px;}
@@ -200,57 +180,45 @@
   @media (max-width:560px){
     .coingrid{grid-template-columns:1fr 1fr;}
   }
-  /* 갤럭시 S25 등 소형 폰(~420px) 텍스트/여백 최적화 */
-  @media (max-width:420px){
-    .container{padding:0 16px;}
-    .coin-group{padding:18px 16px 14px;}
-    .coingrid{gap:8px;}
-    .coincard{padding:18px 8px;}
-    .coincard .cc-ch{font-size:13px;}
-    .coincard .cc-n{font-size:24px;letter-spacing:-0.3px;}
-    .coincard .cc-n small{font-size:12px;margin-left:1px;}
-    .ex{padding:14px 14px;}
-  }
 
   /* ===== 합류 서베이 (토스 스타일 단계형) ===== */
   .survey{position:fixed;inset:0;z-index:60;background:var(--bg);display:none;flex-direction:column;max-width:480px;margin:0 auto;box-shadow:0 0 0 100vmax rgba(15,15,20,.4);}
   .survey.on{display:flex;}
   .sv-top{display:flex;align-items:center;gap:14px;padding:18px 20px 12px;}
   .sv-back{background:none;border:none;color:var(--ink);font-size:26px;line-height:1;cursor:pointer;padding:0;width:26px;font-family:inherit;}
-  .sv-x{background:none;border:none;color:var(--ink);font-size:28px;line-height:1;cursor:pointer;padding:0;width:28px;font-family:inherit;flex:0 0 auto;}
-  .sv-bar{flex:1;height:5px;border-radius:99px;background:var(--surface);overflow:hidden;}
+  .sv-bar{flex:1;height:5px;border-radius:99px;background:var(--tint);overflow:hidden;}
   .sv-bar>span{display:block;height:100%;width:0;border-radius:99px;background:var(--brand);transition:width .3s ease;}
   .sv-body{flex:1;overflow-y:auto;padding:24px 24px 16px;}
-  .sv-q{font-size:24px;font-weight:700;letter-spacing:-0.2px;line-height:1.35;margin:6px 0 6px;color:var(--ink);}
+  .sv-q{font-size:24px;font-weight:800;letter-spacing:-0.6px;line-height:1.35;margin:6px 0 6px;color:var(--ink);}
   .sv-sub{font-size:14px;font-weight:500;color:var(--ink);margin:0 0 30px;}
-  .sv-field{display:flex;align-items:baseline;gap:8px;border-bottom:2px solid var(--surface-line);padding:6px 2px;transition:border-color .2s;}
+  .sv-field{display:flex;align-items:baseline;gap:8px;border-bottom:2px solid var(--tint2);padding:6px 2px;transition:border-color .2s;}
   .sv-field.focus{border-color:var(--brand);}
   .sv-in{flex:1;background:transparent;border:none;font-size:24px;font-weight:700;color:var(--ink);padding:6px 0;outline:none;font-family:inherit;min-width:0;}
   .sv-in::placeholder{color:rgba(23,23,28,.32);}
   .sv-suffix{font-size:18px;font-weight:700;color:var(--ink);}
   .sv-opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;padding:18px;border-radius:15px;
-    border:none;background:var(--surface);color:var(--ink);font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;margin-bottom:11px;transition:.15s;}
+    border:none;background:var(--tint);color:var(--ink);font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;margin-bottom:11px;transition:.15s;}
   .sv-opt.sel{background:var(--brand);color:#fff;}
   .sv-opt svg{width:22px;height:22px;flex:0 0 auto;}
   .sv-opt .ot .od{font-size:13px;font-weight:500;color:var(--ink);margin-top:2px;}
   .sv-opt.sel .ot .od{color:rgba(255,255,255,.88);}
-  .sv-opt .rc{margin-left:auto;color:#fff;font-weight:700;opacity:0;transition:.15s;}
+  .sv-opt .rc{margin-left:auto;color:#fff;font-weight:900;opacity:0;transition:.15s;}
   .sv-opt.sel .rc{opacity:1;}
-  .sv-sum{background:var(--surface);border-radius:16px;padding:2px 18px;margin-top:4px;}
+  .sv-sum{background:var(--tint);border-radius:16px;padding:2px 18px;margin-top:4px;}
   .sv-row{display:flex;justify-content:space-between;gap:12px;padding:14px 0;font-size:16px;}
   .sv-row .k{color:var(--ink);font-weight:500;}
-  .sv-row .v{font-weight:700;text-align:right;color:var(--ink);}
+  .sv-row .v{font-weight:800;text-align:right;color:var(--ink);}
   .sv-foot{padding:14px 20px calc(18px + env(safe-area-inset-bottom));}
-  .sv-next{width:100%;background:var(--brand);color:#fff;border:none;border-radius:14px;padding:17px;font-size:16px;font-weight:700;
+  .sv-next{width:100%;background:var(--brand);color:#fff;border:none;border-radius:14px;padding:17px;font-size:16px;font-weight:800;
     font-family:inherit;cursor:pointer;transition:.15s;}
   .sv-next:hover:not(:disabled){background:var(--brand-deep);}
-  .sv-next:disabled{background:var(--surface);color:rgba(23,23,28,.3);cursor:default;}
+  .sv-next:disabled{background:var(--tint2);color:rgba(23,23,28,.3);cursor:default;}
   .sv-err{color:#f43f5e;font-size:13px;text-align:center;min-height:16px;margin-top:8px;}
   .survey.done .sv-top,.survey.done .sv-body,.survey.done .sv-foot{display:none;}
   .sv-done{display:none;flex:1;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;}
   .survey.done .sv-done{display:flex;}
   .sv-done .em{font-size:62px;}
-  .sv-done h2{font-size:24px;font-weight:700;margin:16px 0 8px;letter-spacing:-0.2px;color:var(--ink);}
+  .sv-done h2{font-size:24px;font-weight:800;margin:16px 0 8px;letter-spacing:-0.6px;color:var(--ink);}
   .sv-done p{font-size:16px;font-weight:500;color:var(--ink);line-height:1.75;margin:0 0 26px;word-break:keep-all;}
 </style>
 </head>
@@ -322,10 +290,11 @@
       </g>
     </svg>
     <span class="eyebrow"><span class="dot"></span>소리튠 메이트 모집 중</span>
-    <h1>같이 배우고,<br><span class="g">영어가 느는</span> 크루</h1>
-    <p>소리튠 메이트는 소리튠으로<br><b>내 영어를 함께 키워가는 크루</b>예요.<br>매주 공부한 걸 남기면 기록이 차곡차곡 쌓여서,<br><b>나만의 학습 일지</b>가 돼요.</p>
+    <h1>같이 배우고,<br><span class="g">영어가 느는</span> 크루.</h1>
+    <p>소리튠 메이트는 소리튠으로 내 영어를 함께 키워가는 <b>크루</b>예요. 매주 공부한 걸 남기면 기록이 차곡차곡 쌓여서, 나만의 학습 일지가 돼요.</p>
     <div class="hero-cta">
       <button class="btn btn-primary btn-lg apply-open">소리튠 메이트 합류하기 →</button>
+      <a class="btn btn-ghost btn-lg" href="/links">이미 메이트예요</a>
     </div>
   </div>
 </section>
@@ -333,18 +302,10 @@
 <!-- ① 왜 소리튠 메이트 -->
 <section class="section">
   <div class="container">
-    <svg class="sec-illust" viewBox="0 0 160 150" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="물음표 아이콘">
-      <ellipse cx="80" cy="128" rx="40" ry="7" fill="#000" opacity="0.05"/>
-      <rect x="40" y="30" width="80" height="66" rx="22" fill="#fe6400"/>
-      <path d="M58 90 L52 112 L78 93 Z" fill="#fe6400"/>
-      <text x="80" y="64" text-anchor="middle" dominant-baseline="central" font-family="'Pretendard','Apple SD Gothic Neo',sans-serif" font-size="44" font-weight="800" fill="#fff">?</text>
-      <circle cx="126" cy="32" r="3" fill="#ffb27a"/>
-      <circle cx="34" cy="28" r="2.5" fill="#fe6400"/>
-    </svg>
     <div class="sec-head">
       <div class="sec-eyebrow">왜 소리튠 메이트?</div>
       <h2>같이 배우고, 같이 크는 동료</h2>
-      <p class="sec-desc"><b>내 영어 공부가 먼저</b>예요. 공부하면서 남긴 기록이 다른 사람에게도<br>슬쩍 도움이 되고, 나한테는 혜택으로 돌아와요.</p>
+      <p class="sec-desc"><b>내 영어 공부가 먼저</b>예요. 공부하면서 남긴 기록이 다른 사람에게도 슬쩍 도움이 되고, 나한테는 혜택으로 돌아와요.</p>
     </div>
     <div class="grid-3">
       <div class="card feature">
@@ -369,57 +330,46 @@
 <!-- ② 단계별 누적 혜택 -->
 <section class="section alt">
   <div class="container">
-    <svg class="sec-illust" viewBox="0 0 160 150" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="새싹이 자라 해를 향하는 성장 일러스트">
-      <ellipse cx="80" cy="140" rx="46" ry="8" fill="#000" opacity="0.05"/>
-      <circle class="sun-glow" cx="112" cy="34" r="22" fill="#fe6400"/>
-      <g class="sun">
-        <circle cx="112" cy="34" r="14" fill="#fe6400"/>
-        <circle cx="112" cy="34" r="8" fill="#ff8636"/>
-        <circle cx="92" cy="20" r="3" fill="#fe6400"/>
-        <circle cx="130" cy="20" r="2.5" fill="#ffb27a"/>
-        <circle cx="132" cy="50" r="2.5" fill="#ffb27a"/>
-      </g>
-      <path d="M74 130 C74 104 74 86 78 68" stroke="#e55a00" stroke-width="6" stroke-linecap="round"/>
-      <path d="M76 98 C54 96 44 80 50 70 C72 70 82 86 76 98 Z" fill="#ffb27a"/>
-      <path d="M78 84 C98 80 106 64 100 56 C82 58 74 74 78 84 Z" fill="#fe6400"/>
-      <path d="M58 120 L96 120 L91 138 L63 138 Z" fill="#fe6400"/>
-      <rect x="54" y="113" width="46" height="10" rx="5" fill="#e55a00"/>
-    </svg>
     <div class="sec-head">
       <div class="sec-eyebrow">단계가 오를수록 쌓이는 혜택</div>
       <h2>메이트 단계별 누적 혜택</h2>
-      <p class="sec-desc">위로 올라갈수록 <b>아래 단계 혜택은 그대로 유지</b>되고,<br>새로운 혜택이 하나씩 더해져요.</p>
+      <p class="sec-desc">위로 올라갈수록 <b>아래 단계 혜택은 그대로 유지</b>되고, 새로운 혜택이 하나씩 더해져요.</p>
     </div>
     <div class="grid-4">
       <div class="level">
+        <span class="em">🌱</span>
         <span class="nm">배움 메이트</span>
         <span class="step">Learn · 합류 즉시</span>
+        <div class="divider"></div>
         <div class="bt">🪙 코인 적립</div>
         <div class="bd">학습 인증마다 코인이 쌓여 강의·상품 결제에 현금처럼 써요</div>
       </div>
       <div class="level">
+        <span class="em">🍃</span>
         <span class="nm">성장 메이트</span>
         <span class="step">Grow · 인증 10회</span>
+        <div class="keep">＋ 배움 단계 혜택 유지</div>
         <div class="bt">🎁 성장 키트 증정</div>
         <div class="bd">여행영어 VOD + 구동사 자료집을 성장 키트로 드려요</div>
-        <div class="keep">＋ 배움 단계 혜택 유지</div>
       </div>
       <div class="level">
+        <span class="em">🌳</span>
         <span class="nm">나눔 메이트</span>
         <span class="step">Share · 인증 30회</span>
+        <div class="keep">＋ 배움 + 성장 단계 혜택 유지</div>
         <div class="bt">🔥 챌린지 무료 참여</div>
         <div class="bd">진행되는 챌린지에 메이트로 무료 초대돼요</div>
-        <div class="keep">＋ 배움 + 성장 단계 혜택 유지</div>
       </div>
       <div class="level master">
+        <span class="em">☀️</span>
         <span class="nm">마스터 메이트</span>
         <span class="step">Master · 인증 50회</span>
+        <div class="keep">＋ 배움 + 성장 + 나눔 유지</div>
         <div class="bt">🗳️ 학습 콘텐츠 기획 참여</div>
         <div class="bd">다음 챌린지 주제·학습 콘텐츠를 직접 기획·제안할 수 있어요</div>
-        <div class="keep">＋ 배움 + 성장 + 나눔 유지</div>
       </div>
     </div>
-    <div class="note-line"><span>합류하면 <b>소리튠 메이트 크루방</b>에서<br>단계별 혜택과 제안·투표에 참여할 수 있어요</span></div>
+    <div class="note-line"><span class="ck">✓</span><span>합류하면 <b>소리튠 메이트 크루방</b>에서 단계별 혜택과 제안·투표에 참여할 수 있어요</span></div>
   </div>
 </section>
 
@@ -429,22 +379,11 @@
     <div class="sec-head">
       <div class="sec-eyebrow">명예의 전당</div>
       <h2>매달, 가장 빛난 메이트</h2>
-      <p class="sec-desc">활동은 사라지지 않고 <b>내 이름 아래 쌓여요.</b><br>매달 가장 멋진 메이트를 뽑아 소개해요.</p>
+      <p class="sec-desc">활동은 사라지지 않고 <b>내 이름 아래 쌓여요.</b> 매달 가장 멋진 메이트를 뽑아 소개해요.</p>
     </div>
     <div class="hall-wrap">
       <div class="hall-feature">
-        <svg class="hf-illust" viewBox="0 0 160 150" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="트로피 일러스트">
-          <ellipse cx="80" cy="140" rx="40" ry="7" fill="#000" opacity="0.05"/>
-          <rect x="58" y="127" width="44" height="9" rx="4" fill="#e55a00"/>
-          <rect x="72" y="110" width="16" height="19" rx="3" fill="#ffb27a"/>
-          <path d="M50 44 H110 V64 C110 88 96 104 80 104 C64 104 50 88 50 64 Z" fill="#fe6400"/>
-          <path d="M50 52 C36 52 36 74 52 78" stroke="#e55a00" stroke-width="7" fill="none" stroke-linecap="round"/>
-          <path d="M110 52 C124 52 124 74 108 78" stroke="#e55a00" stroke-width="7" fill="none" stroke-linecap="round"/>
-          <rect x="46" y="38" width="68" height="11" rx="5.5" fill="#e55a00"/>
-          <path d="M80 58 L84.5 70 L97 74 L84.5 78 L80 90 L75.5 78 L63 74 L75.5 70 Z" fill="#fff"/>
-          <circle cx="118" cy="30" r="3" fill="#ffb27a"/>
-          <circle cx="44" cy="26" r="2.5" fill="#fe6400"/>
-        </svg>
+        <div class="hf-crown">👑</div>
         <div class="hf-title">이 달의 소리튠 메이트</div>
         <div class="hf-sub">매달 <b>마스터 메이트</b>의 콘텐츠 중에서 가장 멋진 콘텐츠 하나를 뽑아요</div>
       </div>
@@ -456,30 +395,13 @@
 <!-- ④ 활동 방법 (코인 리워드) -->
 <section class="section alt">
   <div class="container">
-    <svg class="sec-illust" viewBox="0 0 160 150" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="코인 더미 일러스트">
-      <ellipse cx="80" cy="140" rx="44" ry="7" fill="#000" opacity="0.05"/>
-      <ellipse cx="80" cy="126" rx="30" ry="9" fill="#e55a00"/>
-      <rect x="50" y="117" width="60" height="9" fill="#e55a00"/>
-      <ellipse cx="80" cy="117" rx="30" ry="9" fill="#fe6400"/>
-      <ellipse cx="80" cy="117" rx="21" ry="5.5" fill="#ff8636"/>
-      <rect x="50" y="106" width="60" height="9" fill="#e55a00"/>
-      <ellipse cx="80" cy="106" rx="30" ry="9" fill="#fe6400"/>
-      <ellipse cx="80" cy="106" rx="21" ry="5.5" fill="#ff8636"/>
-      <rect x="50" y="94" width="60" height="9" fill="#e55a00"/>
-      <ellipse cx="80" cy="94" rx="30" ry="9" fill="#fe6400"/>
-      <ellipse cx="80" cy="94" rx="21" ry="5.5" fill="#ff8636"/>
-      <path d="M80 87 L82.6 93 L89 93.5 L84 97.7 L85.8 104 L80 100.4 L74.2 104 L76 97.7 L71 93.5 L77.4 93 Z" fill="#fff"/>
-      <circle cx="118" cy="64" r="3" fill="#fe6400"/>
-      <circle cx="127" cy="80" r="2.5" fill="#ffb27a"/>
-      <circle cx="38" cy="72" r="2.5" fill="#ffb27a"/>
-    </svg>
     <div class="sec-head">
       <div class="sec-eyebrow">활동 방법</div>
       <h2>내 학습을 기록하는 두 가지 길</h2>
-      <p class="sec-desc">네이버 · 인스타그램 중 편한 채널로,<br>배운 걸 내 방식대로 남기면 돼요.<br>기록 하나마다 <b>코인</b>이 함께 쌓여요.</p>
+      <p class="sec-desc">네이버 · 인스타그램 중 편한 채널로, 배운 걸 내 방식대로 남기면 돼요. 기록 하나마다 <b>코인</b>이 함께 쌓여요.</p>
     </div>
     <div class="grid-2">
-      <div class="coin-group naver">
+      <div class="coin-group">
         <div class="coin-gh">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#03C75A"/><path d="M8.2 7 h3.05 l2.9 4.35 V7 H17 v10 h-3.05 l-2.9-4.35 V17 H8.2 Z" fill="#fff"/></svg>
           네이버</div>
@@ -488,7 +410,7 @@
           <div class="coincard"><div class="cc-ch">💬 카페</div><div class="cc-n">2,000<small>코인</small></div></div>
         </div>
       </div>
-      <div class="coin-group insta">
+      <div class="coin-group">
         <div class="coin-gh">
           <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".62" stop-color="#d62976"/><stop offset="1" stop-color="#962fbf"/></linearGradient></defs><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.6" fill="none" stroke="url(#ig2)" stroke-width="2.1"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="url(#ig2)" stroke-width="2.1"/><circle cx="17.1" cy="6.9" r="1.25" fill="url(#ig2)"/></svg>
           인스타그램</div>
@@ -499,9 +421,9 @@
       </div>
     </div>
     <div class="coin-extra">
-      <div class="li"><span>모은 코인은 <b>소리튠영어 포인트로 전환</b> — 강의·상품 결제에 <b>현금처럼</b> 써요 (10코인 = 1포인트)</span></div>
-      <div class="ex">📌 <b>예시</b> · 블로그 2건(10,000) + 카페 4건(8,000) → <span class="ex-total">18,000<small>코인</small></span></div>
-      <div class="coin-cta"><a href="https://soritune-mate.pages.dev/links" class="btn btn-primary btn-lg">🪙 내 기록·코인 확인하기 →</a></div>
+      <div class="li"><span class="ck">💸</span><span>모은 코인은 <b>소리튠영어 포인트로 전환</b> — 강의·상품 결제에 <b>현금처럼</b> 써요 (10코인 = 1포인트)</span></div>
+      <div class="ex">📌 <b>예시</b> · 블로그 2건(10,000) + 카페 4건(8,000) → <b>18,000코인</b> 🎁</div>
+      <div class="coin-cta"><a href="https://soritune-supporters.pages.dev/links" class="btn btn-primary btn-lg">🪙 내 기록·코인 확인하기 →</a></div>
     </div>
   </div>
 </section>
@@ -563,9 +485,10 @@
 <section class="cta-band">
   <div class="container">
     <h2>내 영어도 늘고, 혜택도 챙기고</h2>
-    <p>지금 소리튠 메이트에 합류하고,<br>나만의 학습 일지를 시작하세요.</p>
+    <p>지금 소리튠 메이트에 합류하고, 나만의 학습 일지를 시작하세요.</p>
     <button class="btn btn-primary btn-lg apply-open">소리튠 메이트 합류하기 →</button>
     <div class="sublinks">
+      <a href="/links">이미 메이트인가요? <b>내 기록 제출하기 →</b></a>
       <a href="/guide">처음이신가요? <b>이용 가이드 보기 📖</b></a>
     </div>
   </div>
@@ -578,7 +501,6 @@
   <div class="sv-top">
     <button class="sv-back" id="svBack" aria-label="뒤로">‹</button>
     <div class="sv-bar"><span id="svBar"></span></div>
-    <button class="sv-x" id="svX" aria-label="닫기">×</button>
   </div>
   <div class="sv-body" id="svBody"></div>
   <div class="sv-foot">
@@ -624,7 +546,6 @@
 
   document.querySelectorAll('.apply-open').forEach(el => el.addEventListener('click', e => { e.preventDefault(); open(); }));
   $('svBack').addEventListener('click', back);
-  $('svX').addEventListener('click', close);
   $('svClose').addEventListener('click', close);
   nextBtn.addEventListener('click', next);
 
