@@ -161,9 +161,11 @@
   <!-- ③ 채널 -->
   <section>
     <div class="sh"><span class="num">3</span><h2>채널 분석</h2></div>
-    <div class="sdesc">유입 비중과 채널별 전환 효율을 봅니다.</div>
+    <div class="sdesc">유입 비중 vs 구매 비중, 그리고 채널별 전환 효율을 봅니다.</div>
     <div class="chart-box donut"><canvas id="cDonut"></canvas></div>
-    <div class="cap">채널별 유입 비중</div>
+    <div class="cap">채널별 <b>유입</b> 비중 — 누가 트래픽을 데려왔나</div>
+    <div class="chart-box donut"><canvas id="cPayShare"></canvas></div>
+    <div class="cap">채널별 <b>구매(전환)</b> 비중 · 총 670건 — 누가 실제로 팔았나</div>
     <div class="chart-box hbar"><canvas id="cScatter"></canvas></div>
     <div class="cap last">채널별 전환율 순위 · 괄호=유입 · 색=효율등급</div>
 
@@ -305,6 +307,19 @@ new Chart(document.getElementById('cDonut'),{
   options:{responsive:true,maintainAspectRatio:false,cutout:'58%',
     plugins:{legend:{position:'bottom',labels:{boxWidth:11,font:{size:11},padding:9,color:'#cfcfcf'}},
       tooltip:{callbacks:{label:c=>` ${c.label}: ${nf(c.raw)} (${(c.raw/T.inflow*100).toFixed(1)}%)`}}}}
+});
+
+// ③ 채널별 구매(전환) 비중 도넛 — 실제 결제를 어느 채널이 만들었나
+const sortedPay=[...DATA.channels].filter(c=>c.pay>0).sort((a,b)=>b.pay-a.pay);
+const topPay=sortedPay.slice(0,6);
+const etcPay=sortedPay.slice(6).reduce((s,c)=>s+c.pay,0);
+const totalPay=DATA.channels.reduce((s,c)=>s+c.pay,0);
+new Chart(document.getElementById('cPayShare'),{
+  type:'doughnut',
+  data:{labels:[...topPay.map(c=>c.name),'기타'],datasets:[{data:[...topPay.map(c=>c.pay),etcPay],backgroundColor:PAL,borderWidth:2,borderColor:'#141414'}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'58%',
+    plugins:{legend:{position:'bottom',labels:{boxWidth:11,font:{size:11},padding:9,color:'#cfcfcf'}},
+      tooltip:{callbacks:{label:c=>` ${c.label}: ${nf(c.raw)}건 (${(c.raw/totalPay*100).toFixed(1)}%)`}}}}
 });
 
 // ③ 채널별 전환율 가로막대
