@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>26 스피킹챌린지 프로모션 성과 보고 (모바일)</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  /* ===== Framer 다크 · 모바일 최적화 ===== */
+  :root{
+    --canvas:#090909; --surface-1:#141414; --surface-2:#1c1c1c;
+    --hairline:#262626; --hairline-soft:#1a1a1a;
+    --ink:#ffffff; --ink-muted:#a8a8a8;
+    --blue:#0099ff; --g-violet:#6a4cf5; --g-magenta:#d44df0; --g-orange:#ff7a3d; --g-coral:#ff5577;
+    --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--canvas);color:var(--ink);
+    font-family:'Pretendard','Inter','Apple SD Gothic Neo',sans-serif;line-height:1.65;word-break:keep-all;
+    -webkit-font-smoothing:antialiased;font-feature-settings:'ss01','cv11';}
+  .wrap{max-width:520px;margin:0 auto;padding:0 16px 56px;}
+
+  /* 히어로 */
+  .hero{padding:44px 0 26px;}
+  .eyebrow{font-size:12.5px;font-weight:700;color:#b8b8b8;text-transform:uppercase;margin-bottom:16px;}
+  h1{font-size:34px;font-weight:700;letter-spacing:-1.4px;line-height:1.22;margin-bottom:16px;}
+  .period{font-size:13.5px;font-weight:500;color:#c0c0c0;margin-bottom:20px;}
+  .spotlight{background:linear-gradient(135deg,var(--g-violet),var(--g-magenta));
+    border-radius:22px;padding:22px 22px;font-size:16px;font-weight:500;line-height:1.6;}
+  .spotlight b{font-weight:700;}
+
+  /* KPI 2x2 */
+  .kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:30px 0;}
+  .kpi{background:var(--surface-1);border:1px solid #333;border-radius:16px;padding:16px 15px;}
+  .kpi .l{font-size:13px;color:#cfcfcf;font-weight:600;}
+  .kpi .n{font-size:33px;font-weight:700;letter-spacing:-1.6px;line-height:1;margin-top:8px;font-variant-numeric:tabular-nums;}
+  .kpi .s{font-size:11.5px;color:var(--ink-muted);font-weight:500;margin-top:7px;}
+  .kpi.spot{background:linear-gradient(150deg,var(--g-violet),var(--g-coral));border:none;}
+  .kpi.spot .l,.kpi.spot .s{color:rgba(255,255,255,.85);}
+
+  /* 섹션 */
+  section{background:var(--surface-1);border:1px solid #333;border-radius:18px;
+    padding:24px 18px 26px;margin-bottom:20px;box-shadow:0 10px 26px rgba(0,0,0,.5);}
+  .sh{display:flex;align-items:center;gap:12px;margin-bottom:4px;}
+  .sh .num{width:34px;height:34px;flex:0 0 34px;background:var(--g-violet);color:#fff;border-radius:100px;
+    display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;}
+  .sh h2{font-size:21px;font-weight:700;letter-spacing:-.6px;line-height:1.25;}
+  .sdesc{font-size:14px;color:#d0d0d0;font-weight:500;line-height:1.55;margin:8px 0 20px 0;
+    padding:0 0 18px 46px;border-bottom:1px solid var(--hairline);}
+
+  .chart-box{position:relative;height:250px;margin-bottom:8px;}
+  .chart-box.hbar{height:330px;}
+  .chart-box.donut{height:300px;}
+  .cap{font-size:12.5px;color:#bcbcbc;text-align:center;margin:6px 0 22px;font-weight:500;}
+  .cap.last{margin-bottom:0;}
+
+  /* 핵심 결과 — 흰 박스 */
+  .callout{background:#fff;border-left:5px solid var(--g-violet);border-radius:12px;
+    padding:20px 20px;font-size:15px;font-weight:600;margin-top:20px;line-height:1.75;color:#161616;
+    box-shadow:0 8px 24px rgba(0,0,0,.35);}
+  .callout::before{content:'핵심 결과';display:block;width:fit-content;
+    font-size:12px;font-weight:800;letter-spacing:.3px;color:#fff;
+    background:var(--g-violet);padding:5px 13px;border-radius:100px;margin-bottom:13px;}
+  .callout b{color:#000;font-weight:800;}
+  .callout.gray{background:var(--surface-2);border:1px solid var(--hairline);border-left-color:var(--hairline);
+    color:#b0b0b0;padding:15px 16px;font-size:12.5px;line-height:1.65;font-weight:500;box-shadow:none;}
+  .callout.gray::before{display:none;}
+  .callout.gray b{color:#ccc;}
+
+  /* 퍼널 */
+  .ftitle{font-size:14px;font-weight:700;margin:22px 0 12px;}
+  .funnel{display:flex;flex-direction:column;gap:9px;}
+  .fstep{display:flex;align-items:center;gap:12px;}
+  .fbar{height:48px;border-radius:12px;display:flex;align-items:center;padding:0 16px;color:#fff;font-weight:700;
+    font-size:14px;background:linear-gradient(135deg,var(--g-violet),var(--g-magenta));white-space:nowrap;}
+  .fstep .meta{font-size:12px;color:var(--ink-muted);font-weight:500;}
+  .fstep .meta b{color:var(--ink);font-size:14px;font-weight:700;}
+
+  /* 표 (가로 스크롤) */
+  .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:4px;}
+  table{width:100%;min-width:460px;border-collapse:collapse;font-size:13px;}
+  th,td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--hairline-soft);white-space:nowrap;}
+  th:first-child,td:first-child{text-align:left;}
+  th{font-size:12px;color:#c4c4c4;font-weight:700;border-bottom:1px solid var(--hairline);}
+  td{font-variant-numeric:tabular-nums;color:#eee;}
+  tr.top td{background:rgba(106,76,245,.14);color:#fff;font-weight:700;}
+  .tag{display:inline-block;padding:3px 9px;border-radius:100px;font-size:11px;font-weight:700;}
+  .t-ok{background:rgba(34,197,94,.18);color:#4ade80;}
+  .t-mid{background:rgba(245,158,11,.18);color:#fbbf24;}
+  .t-bad{background:rgba(239,68,68,.18);color:#f87171;}
+  .t-note{background:var(--surface-2);color:var(--ink-muted);border:1px solid var(--hairline);}
+  .thint{font-size:11.5px;color:var(--ink-muted);text-align:center;margin-top:8px;}
+
+  /* 액션 카드 (1열) */
+  .acts{display:flex;flex-direction:column;gap:12px;margin-top:4px;}
+  .act{border:1px solid var(--hairline);border-radius:14px;padding:17px 17px;background:var(--surface-2);
+    position:relative;overflow:hidden;}
+  .act::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;}
+  .act.p1::before{background:var(--ok);} .act.p2::before{background:var(--g-violet);}
+  .act.p3::before{background:var(--bad);} .act.p4::before{background:var(--blue);}
+  .act.p5::before{background:var(--ink-muted);}
+  .act.p1,.act.p2,.act.p3{border-color:rgba(106,76,245,.55);box-shadow:0 0 0 1px rgba(106,76,245,.3);background:#191626;}
+  .act.p4,.act.p5{opacity:.7;}
+  .act .ah{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:16px;font-weight:700;margin-bottom:9px;}
+  .act .pill{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:var(--surface-1);
+    color:#bcbcbc;border:1px solid var(--hairline);}
+  .act .ab{font-size:14px;color:#dedede;font-weight:500;line-height:1.7;}
+
+  .foot{text-align:center;color:var(--ink-muted);font-size:11.5px;margin-top:30px;line-height:1.8;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">소리튠 · 프로모션 성과 보고</div>
+    <h1>26 스피킹챌린지<br>프로모션 성과 보고</h1>
+    <div class="period">2026. 07. 20 — 08. 02 · 14일간 · GA + 실구매</div>
+    <div class="spotlight">
+      ✅ <b>14일 800명 전환 · 16.6%</b><br>
+      ⚠️ <b>유입 54% 유튜브 편중</b><br>
+      🎯 <b>카카오 효율 최고 14~16%</b>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="l">총 유입</div><div class="n" id="k_inflow">–</div><div class="s">14일 누적 · GA</div></div>
+    <div class="kpi"><div class="l">실제 구매</div><div class="n" id="k_buy">–</div><div class="s">전 채널 합산</div></div>
+    <div class="kpi spot"><div class="l">전환율</div><div class="n" id="k_cvr">–</div><div class="s">실구매 ÷ 유입</div></div>
+    <div class="kpi"><div class="l">일 평균 유입</div><div class="n" id="k_avg">–</div><div class="s">최고 533·최저 102</div></div>
+  </div>
+
+  <!-- ② 전환 (맨 앞으로) -->
+  <section>
+    <div class="sh"><span class="num">2</span><h2>전환 분석</h2></div>
+    <div class="sdesc">유입 대비 실제 구매, 일자별 전환율의 흐름입니다.</div>
+    <div class="chart-box"><canvas id="cConv"></canvas></div>
+    <div class="cap">일자별 전환 비율 · 초록=전환% · 회색=미전환</div>
+    <div class="chart-box"><canvas id="cCvr"></canvas></div>
+    <div class="cap last">일자별 실구매 건수(명)</div>
+
+    <div class="ftitle">전환 퍼널 (기간 합계)</div>
+    <div class="funnel">
+      <div class="fstep"><div class="fbar" style="width:100%;">유입 <span id="f_inflow"></span></div><div class="meta">100%</div></div>
+      <div class="fstep"><div class="fbar" id="f_buybar" style="background:linear-gradient(135deg,#16a34a,#4ade80);">구매 <span id="f_buy"></span></div><div class="meta">전환율 <b id="f_rate"></b></div></div>
+    </div>
+    <div class="callout"><b>평균 전환 16.6%</b> 견조 · 최고 <b>24.5%(7/22)</b> · 후반부 <b>재반등</b> → 구매의향 트래픽 꾸준.</div>
+    <div class="callout gray">참고 · GA 결제 670건 vs 실구매 800건(약 16% 미추적). 회원가입(158)은 GA 기준이라 퍼널 제외. 매출 미집계.</div>
+  </section>
+
+  <!-- ① 유입 -->
+  <section>
+    <div class="sh"><span class="num">1</span><h2>유입 분석</h2></div>
+    <div class="sdesc">일자별 유입(클릭) 추이입니다.</div>
+    <div class="chart-box"><canvas id="cInflow"></canvas></div>
+    <div class="cap last">일자별 유입(클릭)</div>
+    <div class="callout"><b>초중반 집중</b> · 피크 <b>533(7/25)</b> · 저점 <b>102(7/22·비발송)</b> · 전형적 오픈효과 곡선.</div>
+  </section>
+
+  <!-- ③ 채널 -->
+  <section>
+    <div class="sh"><span class="num">3</span><h2>채널 분석</h2></div>
+    <div class="sdesc">유입 비중과 채널별 전환 효율을 봅니다.</div>
+    <div class="chart-box donut"><canvas id="cDonut"></canvas></div>
+    <div class="cap">채널별 유입 비중</div>
+    <div class="chart-box hbar"><canvas id="cScatter"></canvas></div>
+    <div class="cap last">채널별 전환율 순위 · 괄호=유입 · 색=효율등급</div>
+
+    <div class="tscroll">
+      <table id="chTable">
+        <thead><tr><th>채널</th><th>유입</th><th>비중</th><th>가입</th><th>결제</th><th>전환율</th><th>평가</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="thint">← 표를 좌우로 넘겨보세요 →</div>
+
+    <div class="callout"><b>카카오 계열 = 효율 1위</b>(합산 1,172·14~16%) · <b>유튜브</b> 볼륨 최대(2,615·구매 249)나 9.5% · <b>인스타</b> 406인데 4.7% 최약.</div>
+    <div class="callout gray">오가닉(97.5%)은 UTM 미부착 직접유입·재방문·미추적 구매가 몰린 버킷 = '트래킹 공백'. 실구매 800−GA 670 차이의 주원인.</div>
+  </section>
+
+  <!-- ④ 액션 -->
+  <section>
+    <div class="sh"><span class="num">4</span><h2>앞으로의 액션</h2></div>
+    <div class="sdesc">채널별 성과에 근거한 다음 스텝 초안입니다.</div>
+    <div class="acts">
+      <div class="act p1"><div class="ah">카카오 계열 확대 <span class="pill">유지·확대</span></div>
+        <div class="ab"><b>효율 1위(14~16%)</b>. 메시지·오픈채팅 발송빈도·예산 확대 → <b>가장 잘 파는 채널 증폭</b>.</div></div>
+      <div class="act p2"><div class="ah">유튜브 전환 최적화 <span class="pill">전환 개선</span></div>
+        <div class="ab">유입 <b>54%</b> 최대인데 전환 9.5%. 영상 CTA·랜딩 정합성 개선 → <b>1%p 개선 = 구매 +26건</b>.</div></div>
+      <div class="act p3"><div class="ah">인스타그램 재점검 <span class="pill">개선·재검토</span></div>
+        <div class="ab">유입 406인데 <b>4.7% 최하위</b>. 콘텐츠·타겟 개편, 안 되면 <b>예산 재배분</b>.</div></div>
+      <div class="act p4"><div class="ah">네이버 카페 테스트 확대 <span class="pill">스케일업</span></div>
+        <div class="ab">소량(79)·<b>전환 12.7% 양호</b>. 볼륨 확대해 <b>효율 규모검증</b>.</div></div>
+      <div class="act p5"><div class="ah">문자·네이버브검 효율 점검 <span class="pill">비용검토</span></div>
+        <div class="ab">문자 9.2%·브검 5.6%. <b>비용 대비 재평가</b> 후 유지/축소.</div></div>
+    </div>
+  </section>
+
+  <div class="foot">26 스피킹챌린지 프로모션 성과 보고 · 2026.07.20—08.02<br>출처: 프로모션(챌린지)·26_스피킹챌린지 탭</div>
+</div>
+
+<script>
+const DATA = {
+  daily: [
+    {date:"07-20",inflow:216,buy:36,cvr:16.7},{date:"07-21",inflow:309,buy:50,cvr:16.2},
+    {date:"07-22",inflow:102,buy:25,cvr:24.5},{date:"07-23",inflow:406,buy:65,cvr:16.0},
+    {date:"07-24",inflow:476,buy:69,cvr:14.5},{date:"07-25",inflow:533,buy:84,cvr:15.8},
+    {date:"07-26",inflow:508,buy:78,cvr:15.4},{date:"07-27",inflow:524,buy:85,cvr:16.2},
+    {date:"07-28",inflow:364,buy:73,cvr:20.1},{date:"07-29",inflow:325,buy:56,cvr:17.2},
+    {date:"07-30",inflow:273,buy:37,cvr:13.6},{date:"07-31",inflow:223,buy:45,cvr:20.2},
+    {date:"08-01",inflow:274,buy:36,cvr:13.1},{date:"08-02",inflow:299,buy:61,cvr:20.4}
+  ],
+  channels: [
+    {name:"유튜브",inflow:2615,signup:71,pay:249,cvr:9.5},
+    {name:"카카오_오픈채팅방_퍼널",inflow:495,signup:6,pay:69,cvr:13.9},
+    {name:"인스타그램",inflow:406,signup:12,pay:19,cvr:4.7},
+    {name:"카카오_메시지",inflow:356,signup:10,pay:58,cvr:16.3},
+    {name:"문자",inflow:283,signup:4,pay:26,cvr:9.2},
+    {name:"카카오_채널",inflow:251,signup:3,pay:35,cvr:13.9},
+    {name:"오가닉",inflow:202,signup:48,pay:197,cvr:97.5},
+    {name:"네이버 카페",inflow:79,signup:1,pay:10,cvr:12.7},
+    {name:"네이버_브검",inflow:71,signup:3,pay:4,cvr:5.6},
+    {name:"카카오_오픈채팅방",inflow:70,signup:0,pay:3,cvr:4.3},
+    {name:"구글_검색",inflow:3,signup:0,pay:0,cvr:0.0},
+    {name:"카카오_오픈채팅방_라이브판매",inflow:1,signup:0,pay:0,cvr:0.0}
+  ],
+  totals: {inflow:4832,signup:158,pay_ga:670,buy_real:800}
+};
+
+const BLUE='#0099ff', GREEN='#22c55e', VIOLET='#6a4cf5', MAGENTA='#d44df0', ORANGE='#ff7a3d', CORAL='#ff5577', GRID='#262626', MUTED='#a8a8a8';
+const nf=n=>n.toLocaleString();
+Chart.defaults.font.family="'Pretendard','Inter',sans-serif";
+Chart.defaults.color=MUTED;
+Chart.defaults.font.size=11;
+
+const T=DATA.totals;
+const cvr=(T.buy_real/T.inflow*100).toFixed(1);
+document.getElementById('k_inflow').textContent=nf(T.inflow);
+document.getElementById('k_buy').textContent=nf(T.buy_real);
+document.getElementById('k_cvr').textContent=cvr+'%';
+document.getElementById('k_avg').textContent=Math.round(T.inflow/DATA.daily.length);
+document.getElementById('f_inflow').textContent=nf(T.inflow);
+document.getElementById('f_buy').textContent=nf(T.buy_real);
+document.getElementById('f_rate').textContent=cvr+'%';
+document.getElementById('f_buybar').style.width=Math.max(24,(T.buy_real/T.inflow*100)).toFixed(0)+'%';
+
+const labels=DATA.daily.map(d=>String(+d.date.slice(3)));  // 일(day)만
+
+// 탑3 하이라이트
+function topColors(vals,bright,dim,n=3){
+  const top=new Set([...vals.keys()].sort((a,b)=>vals[b]-vals[a]).slice(0,n));
+  return vals.map((_,i)=>top.has(i)?bright:dim);
+}
+const hexToRgba=(hex,a)=>{const n=parseInt(hex.slice(1),16);return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';};
+const inflowVals=DATA.daily.map(d=>d.inflow);
+const buyVals=DATA.daily.map(d=>d.buy);
+const cvrVals=DATA.daily.map(d=>d.cvr);
+const chTop3=new Set(DATA.channels.filter(c=>c.name!=='오가닉'&&c.inflow>=50).sort((a,b)=>b.cvr-a.cvr).slice(0,3).map(c=>c.name));
+
+// ① 유입 막대
+new Chart(document.getElementById('cInflow'),{
+  type:'bar',
+  data:{labels,datasets:[{label:'유입',data:inflowVals,
+    backgroundColor:topColors(inflowVals,BLUE,'rgba(0,153,255,.3)'),borderRadius:5,maxBarThickness:24}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{y:{beginAtZero:true,grid:{color:GRID},border:{display:false}},x:{grid:{display:false},border:{color:GRID}}}}
+});
+
+// ② 전환 비율 (100% 스택)
+new Chart(document.getElementById('cConv'),{
+  type:'bar',
+  data:{labels,datasets:[
+    {label:'전환(구매)',data:cvrVals,backgroundColor:topColors(cvrVals,GREEN,'rgba(34,197,94,.4)'),borderRadius:3,borderSkipped:false,stack:'s'},
+    {label:'미전환',data:DATA.daily.map(d=>+(100-d.cvr).toFixed(1)),backgroundColor:'rgba(255,255,255,.07)',borderRadius:3,borderSkipped:false,stack:'s'}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'top',labels:{boxWidth:11,font:{size:10.5},color:'#cfcfcf'}},
+      tooltip:{callbacks:{label:c=>c.dataset.label+' '+c.raw+'%',
+        afterBody:items=>{const d=DATA.daily[items[0].dataIndex];return '유입 '+nf(d.inflow)+' · 구매 '+d.buy;}}}},
+    scales:{x:{stacked:true,grid:{display:false},border:{color:GRID}},
+      y:{stacked:true,max:100,grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'%'}}}}
+});
+
+// ② 실구매 건수 막대
+new Chart(document.getElementById('cCvr'),{
+  type:'bar',
+  data:{labels,datasets:[{label:'실구매',data:buyVals,
+    backgroundColor:topColors(buyVals,VIOLET,'rgba(106,76,245,.32)'),borderRadius:5,maxBarThickness:22}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+    tooltip:{callbacks:{afterBody:items=>{const d=DATA.daily[items[0].dataIndex];return '유입 '+nf(d.inflow)+' · 전환율 '+d.cvr+'%';}}}},
+    scales:{y:{beginAtZero:true,grid:{color:GRID},border:{display:false}},x:{grid:{display:false},border:{color:GRID}}}}
+});
+
+// ③ 도넛 (범례 하단)
+const sorted=[...DATA.channels].sort((a,b)=>b.inflow-a.inflow);
+const topCh=sorted.slice(0,6);
+const etc=sorted.slice(6).reduce((s,c)=>s+c.inflow,0);
+const donutLabels=[...topCh.map(c=>c.name),'기타'];
+const donutData=[...topCh.map(c=>c.inflow),etc];
+const PAL=[BLUE,VIOLET,MAGENTA,ORANGE,CORAL,GREEN,'#333'];
+new Chart(document.getElementById('cDonut'),{
+  type:'doughnut',
+  data:{labels:donutLabels,datasets:[{data:donutData,backgroundColor:PAL,borderWidth:2,borderColor:'#141414'}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'58%',
+    plugins:{legend:{position:'bottom',labels:{boxWidth:11,font:{size:11},padding:9,color:'#cfcfcf'}},
+      tooltip:{callbacks:{label:c=>` ${c.label}: ${nf(c.raw)} (${(c.raw/T.inflow*100).toFixed(1)}%)`}}}}
+});
+
+// ③ 채널별 전환율 가로막대
+const effCh=DATA.channels.filter(c=>c.name!=='오가닉'&&c.inflow>=50).sort((a,b)=>b.cvr-a.cvr);
+const tierColor=c=> c.cvr>=13?GREEN : c.cvr>=8?'#f59e0b' : '#ef4444';
+new Chart(document.getElementById('cScatter'),{
+  type:'bar',
+  data:{labels:effCh.map(c=>c.name+' ('+nf(c.inflow)+')'),
+    datasets:[{label:'전환율',data:effCh.map(c=>c.cvr),backgroundColor:effCh.map((c,i)=> i<3 ? tierColor(c) : hexToRgba(tierColor(c),.3)),borderRadius:5,maxBarThickness:18}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},
+      tooltip:{callbacks:{label:c=>{const ch=effCh[c.dataIndex];return ` 전환율 ${ch.cvr}% · 유입 ${nf(ch.inflow)} · 결제 ${ch.pay}`;}}}},
+    scales:{x:{beginAtZero:true,grid:{color:GRID},border:{display:false},ticks:{callback:v=>v+'%'}},
+      y:{grid:{display:false},border:{display:false},ticks:{font:{size:10.5},color:'#d0d0d0'}}}}
+});
+
+// ③ 표
+const tb=document.querySelector('#chTable tbody');
+const rank=(c)=>{
+  if(c.name==='오가닉') return ['t-note','미추적'];
+  if(c.cvr>=13) return ['t-ok','우수'];
+  if(c.cvr>=8) return ['t-mid','보통'];
+  return ['t-bad','개선'];
+};
+sorted.filter(c=>c.inflow>=10).forEach((c,i)=>{
+  const [cls,txt]=rank(c);
+  const tr=document.createElement('tr');
+  if(chTop3.has(c.name)) tr.className='top';
+  tr.innerHTML=`<td>${c.name}</td><td>${nf(c.inflow)}</td><td>${(c.inflow/T.inflow*100).toFixed(1)}%</td>
+    <td>${c.signup}</td><td>${c.pay}</td><td><b style="color:#fff">${c.cvr}%</b></td><td><span class="tag ${cls}">${txt}</span></td>`;
+  tb.appendChild(tr);
+});
+</script>
+</body>
+</html>
