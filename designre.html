@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>해결 · 블록 점등 데모</title>
+<style>
+  :root{
+    --brand:#6C4CE0; --brand-deep:#4A2FB0;
+    --ink:#191622; --sub:#8A8595;
+    --ok:#18B36B; --line:#ECEAF1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Pretendard','Apple SD Gothic Neo',system-ui,sans-serif;
+    display:flex; justify-content:center; background:#EEECF4;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* 다크에서 밝게 터짐 */
+  .section{
+    width:100%; max-width:420px; padding:76px 26px 88px;
+    background:linear-gradient(180deg,#141021 0%,#241C3D 22%,#6B58C9 40%,#F3F1FA 60%,#FFFFFF 100%);
+  }
+
+  h1{color:#fff; font-size:32px; font-weight:800; line-height:1.35; letter-spacing:-.7px; text-align:center}
+
+  /* 대비 카드 */
+  .compare{margin-top:38px; display:flex; flex-direction:column; gap:12px}
+  .row{
+    display:flex; align-items:center; gap:12px;
+    background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.16);
+    border-radius:14px; padding:16px 18px; backdrop-filter:blur(4px);
+  }
+  .row .flow{font-size:17px; font-weight:700; color:rgba(255,255,255,.55); letter-spacing:-.3px}
+  .row.bad .flow{text-decoration:line-through; text-decoration-color:rgba(255,255,255,.4)}
+  .row.good{background:#fff; border-color:#fff; box-shadow:0 12px 30px rgba(74,47,176,.25)}
+  .row.good .flow{color:var(--brand-deep); font-weight:800}
+  .row .mark{margin-left:auto; font-size:20px}
+
+  /* 블록 점등 데모 */
+  .demo{margin-top:52px}
+  .demo .cap{text-align:center; color:var(--sub); font-size:14px; font-weight:600; margin-bottom:20px}
+  .blocks{display:flex; flex-direction:column; gap:14px}
+  .block{
+    display:flex; align-items:center; gap:14px;
+    background:#fff; border:2px solid var(--line); border-radius:16px;
+    padding:18px 20px; opacity:.35; transform:translateY(6px);
+    box-shadow:0 4px 14px rgba(60,40,120,.06);
+    animation:light 3.6s infinite;
+  }
+  .block:nth-child(1){animation-delay:0s}
+  .block:nth-child(2){animation-delay:.6s}
+  .block:nth-child(3){animation-delay:1.2s}
+  @keyframes light{
+    0%,6%{opacity:.35; transform:translateY(6px); border-color:var(--line)}
+    14%,60%{opacity:1; transform:translateY(0); border-color:var(--brand)}
+    75%,100%{opacity:.55; transform:translateY(0); border-color:var(--line)}
+  }
+  .block .en{font-size:20px; font-weight:800; color:var(--ink); letter-spacing:-.3px}
+  .block .arrow{color:var(--brand); font-weight:800}
+  .block .ko{font-size:16px; font-weight:700; color:var(--sub)}
+  .block .num{
+    width:26px; height:26px; flex:0 0 26px; border-radius:8px;
+    background:var(--brand); color:#fff; font-size:13px; font-weight:800;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .punch{
+    margin-top:46px; text-align:center;
+    font-size:26px; font-weight:800; color:var(--ink); letter-spacing:-.5px; line-height:1.4;
+  }
+  .punch b{color:var(--brand)}
+</style>
+</head>
+<body>
+  <div class="section">
+    <h1>이제,<br>듣는 방식을 바꿉니다</h1>
+
+    <div class="compare">
+      <div class="row bad">
+        <span class="flow">단어 → 해석 → 조합</span>
+        <span class="mark">❌</span>
+      </div>
+      <div class="row good">
+        <span class="flow">블록 → 즉시 이해</span>
+        <span class="mark">✅</span>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="cap">앞에서부터, 블록마다 바로 이해</div>
+      <div class="blocks">
+        <div class="block">
+          <span class="num">1</span>
+          <span class="en">I was wondering</span>
+          <span class="arrow">›</span>
+          <span class="ko">궁금했는데</span>
+        </div>
+        <div class="block">
+          <span class="num">2</span>
+          <span class="en">if you could help me</span>
+          <span class="arrow">›</span>
+          <span class="ko">도와줄 수 있을지</span>
+        </div>
+        <div class="block">
+          <span class="num">3</span>
+          <span class="en">with something</span>
+          <span class="arrow">›</span>
+          <span class="ko">뭔가를</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="punch">해석하지 말고,<br><b>앞에서부터</b> 이해하세요.</p>
+  </div>
+</body>
+</html>
