@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>소리튠 마감 타이머</title>
+<style>
+  html,body{margin:0;background:transparent}
+  *{box-sizing:border-box}
+  .banner{
+    position:relative; overflow:hidden;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:16px 18px;
+    background:#4a171b;              /* 바닥(줄어들면 드러나는 어두운색) */
+    border-radius:14px;
+    font-family:-apple-system,BlinkMacSystemFont,"Pretendard",sans-serif;
+  }
+  .fill{                             /* 15초마다 줄었다 다시 차는 빨강 게이지 */
+    position:absolute; left:0; top:0; bottom:0; width:100%;
+    background:linear-gradient(90deg,#f6323f,#f4303e);
+    z-index:0;
+    animation:drain 15s linear infinite;   /* ← 15초. 숫자만 바꾸면 속도 조절 */
+  }
+  @keyframes drain{ from{width:100%} to{width:0%} }
+  .content{position:relative; z-index:1; display:flex; align-items:center;
+           justify-content:space-between; gap:12px; width:100%}
+  .left{color:#fff;text-align:left;min-width:0}
+  .line1{font-size:15px;font-weight:800;margin-bottom:7px;white-space:nowrap}
+  .line2{font-size:21px;font-weight:800;letter-spacing:.3px;white-space:nowrap;
+         font-variant-numeric:tabular-nums}
+  .line2 .bar{opacity:.5;margin:0 8px}
+  .line2 .sep{opacity:.55;margin:0 3px}
+  .line2 .num{display:inline-block;min-width:1.15em;text-align:center}
+  .btn{
+    flex:0 0 auto;
+    background:#ffe14a;color:#1a1a1a;font-weight:800;font-size:16px;
+    padding:14px 20px;border-radius:10px;text-decoration:none;white-space:nowrap;
+  }
+  @media (max-width:520px){
+    .banner{padding:13px 14px}
+    .line1{font-size:13px;margin-bottom:5px}
+    .line2{font-size:17px}
+    .btn{font-size:14px;padding:12px 14px}
+  }
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="fill" id="fill"></div>
+  <div class="content">
+    <div class="left">
+      <div class="line1">역대급 혜택종료까지 💸</div>
+      <div class="line2">
+        <span id="dday">D-3</span><span class="bar">|</span><span class="num" id="h">00</span><span class="sep">:</span><span class="num" id="m">00</span><span class="sep">:</span><span class="num" id="s">00</span><span class="sep">:</span><span class="num" id="c">00</span>
+      </div>
+    </div>
+    <!-- ↓ href 를 실제 구매/신청 페이지 주소로 바꾸세요 -->
+    <a class="btn" href="#" target="_top">지금 시작하기</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ▼▼▼ 마감 시각만 바꾸세요 (한국시간) ▼▼▼
+  var end = new Date("2026-08-22T23:59:59+09:00").getTime();
+  // ▲▲▲
+
+  var fill=document.getElementById('fill');
+  var dday=document.getElementById('dday');
+  var h=document.getElementById('h'),m=document.getElementById('m'),
+      s=document.getElementById('s'),c=document.getElementById('c');
+  function p(n){return (n<10?'0':'')+n;}
+
+  function tick(){
+    var d=end-new Date().getTime();
+    if(d<=0){
+      dday.textContent='D-DAY';
+      h.textContent=m.textContent=s.textContent=c.textContent='00';
+      fill.style.animation='none'; fill.style.width='0%';
+      return;
+    }
+    var days=Math.floor(d/86400000);
+    dday.textContent='D-'+days;
+    h.textContent=p(Math.floor(d%86400000/3600000)); // 시
+    m.textContent=p(Math.floor(d%3600000/60000));     // 분
+    s.textContent=p(Math.floor(d%60000/1000));        // 초
+    c.textContent=p(Math.floor(d%1000/10));           // 백분초
+
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
